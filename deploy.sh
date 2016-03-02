@@ -15,6 +15,7 @@ echo "########## Deploying site..."
 scp -r Sources $host:$app_dir
 scp -r Resources $host:$app_dir
 scp Package.swift $host:$app_dir
+scp run.sh $host:$app_dir
 ssh $host -C "chmod -R 644 $app_dir/Resources/*"
 
 echo "########## Building site..."

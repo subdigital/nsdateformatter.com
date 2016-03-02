@@ -14,6 +14,29 @@
     $(target).show();
   }
 
+  function formatDate() {
+    var date = $("#date").val()
+    var format = $("#format").val()
+
+    if (date.length > 0 && format.length > 0) {
+      $("#result").html("...");
+      $.ajax('/format', {
+        type: "post",
+        data: $(".try form").serialize(),
+        dataType: 'json',
+        success: function(data, status, xhr) {
+          if (data.status == "ok") {
+            $("#result").text(data.result);
+          } else {
+            $("#result").html("<em>Invalid date or format</em>");
+          }
+        }
+      })
+    } else {
+      $("#result").html("<em>Please specify a valid date and format</em>");
+    }
+  }
+
   $(function() {
     var activeLink = $("ul.nav li a.active")[0];
     showRelated(activeLink);
@@ -25,6 +48,17 @@
       showRelated(this);
       return false;
     });
+
+    $(".try input[type='text']").on('keypress', function(e) {
+      if (e.keyCode == 13) {
+        e.preventDefault()
+        formatDate()
+      }
+    });
+
+    $(".try input[type='text']").change(function() {
+      formatDate();
+    })
   });
   </script>
 </head>
@@ -36,11 +70,31 @@
   </header>
 
   <div class="content">
+
+    <section class="try panel">
+      <form>
+        <div class="field">
+          <label>Date</label>
+          <input id="date" name="date" type="text" value="March 1, 2016 09:40 PM">
+        </div>
+
+        <div class="field">
+          <label>Format String</label>
+          <input id="format" name="format" type="text" value="MMM yyyy">
+        </div>
+      </form>
+
+      <div class="result-container">
+        <label>Result</label>
+        <h4 id="result">MAR 2016</h4>
+      </div>
+    </section>
+
     <ul class="nav">
       <li><a href="#examples" class="active" data-target=".examples">Examples</a></li>
       <li><a href="#reference" class="" data-target=".reference">Full Reference</a></li>
     </ul>
-    <section class="panel">
+    <section class="info panel">
       <table class="examples toggle" cellspacing=0 cellpadding=0>
         {% for format in formats %}
         <tr>

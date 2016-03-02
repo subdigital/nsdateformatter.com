@@ -46,10 +46,48 @@ header h2 {
   margin: 3em auto;
 }
 
+.try .field {
+  float: left;
+  width: 48%;
+  position: relative;
+}
+
+.try label {
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 10px;
+  margin-bottom: 4px;
+  display: block;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.try input[type="text"] {
+  font-size: 18px;
+  padding: 8px;
+  border: solid 1px #aaa;
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 92%;
+  color: #fff;
+}
+
+.result-container {
+  clear: left;
+  margin-top: 90px;
+}
+
+.result-container h4 {
+  margin-top: 5px;
+}
+
 .panel {
+  position: relative;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 8px 24px;
   border-radius: 8px;
+  margin-bottom: 70px;
+}
+
+.panel.info {
   margin-bottom: 200px;
 }
 
