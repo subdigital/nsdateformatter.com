@@ -18,22 +18,22 @@ post("format") { request in
 
   let formatter = NSDateFormatter()
   formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+  formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
 
-  // we'll do our best to guess at a date format
-  formatter.dateStyle = .ShortStyle
-
-  // if let _ = format.characters.indexOf(":") {
-  //   formatter.timeStyle = .ShortStyle
-  // } else {
-  //   formatter.timeStyle = .NoStyle
-  //
+  // Not yet implemented in OSS Swift
+  // if let offset = params["time_zone_offset"] {
+  //   let secondsPerHour = 60 * 60
+  //   let offsetInSeconds = Int((Float(offset) ?? 0) * (Float(secondsPerHour) ?? 0))
+  //   let timeZone = NSTimeZone(forSecondsFromGMT: offsetInSeconds)
+  //   formatter.timeZone = timeZone
+  // }
 
   if let date = formatter.dateFromString(dateString) {
     formatter.dateFormat = params["format"]
     let formattedString = formatter.stringFromDate(date)
     return renderJSON(["status": "ok", "result": formattedString, "date_string": dateString])
   } else {
-    return renderJSON(["status": "invalid date"])
+    return renderJSON(["status": "invalid date", "date_string": dateString])
   }
 }
 

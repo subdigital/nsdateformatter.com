@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <title>NSDateFormatter.com - Easy Skeezy Date Formatting for Swift and Objective-C</title>
-  <link rel="stylesheet" href="styles.css" media="screen" charset="utf-8">
+  <link rel="stylesheet" href="styles.css" media="screen">
+  <script src="moment.js"></script>
   <script src="https://use.typekit.net/leg5xtm.js"></script>
   <script>try{Typekit.load({ async: true });}catch(e){}</script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.js"></script>
@@ -15,14 +16,21 @@
   }
 
   function formatDate() {
-    var date = $("#date").val()
-    var format = $("#format").val()
+    var dateInput = $("#date").val();
+    var date = moment(new Date(dateInput));
+    var format = $("#format").val();
 
-    if (date.length > 0 && format.length > 0) {
+    var params = $.param({
+      date: date.format(),
+      format: format,
+      time_zone_offset: (new Date().getTimezoneOffset() / -60)
+    });
+
+    if (dateInput.length > 0 && format.length > 0) {
       $("#result").html("...");
       $.ajax('/format', {
         type: "post",
-        data: $(".try form").serialize(),
+        data: params,
         dataType: 'json',
         success: function(data, status, xhr) {
           if (data.status == "ok") {
@@ -92,10 +100,11 @@
 
     <ul class="nav">
       <li><a href="#examples" class="active" data-target=".examples">Examples</a></li>
-      <li><a href="#reference" class="" data-target=".reference">Full Reference</a></li>
+      <li><a href="#reference" class="" data-target=".reference">Reference</a></li>
+      <li><a href="#about" class="" data-target=".about">About</a></li>
     </ul>
     <section class="info panel">
-      <table class="examples toggle" cellspacing=0 cellpadding=0>
+      <table class="examples toggle">
         {% for format in formats %}
         <tr>
           <td class="example">{{ format.value }}</td>
@@ -106,7 +115,7 @@
 
       <div class="reference toggle">
         <p>The following table&#39;s sample column are mostly based on the time <code>December 14th, 2008 4:35 PM UTC</code>.</p>
-        <table class="reference-table" cellpadding=0 cellspacing=0>
+        <table class="reference-table">
           <tr>
             <th>Characters</th>
             <th>Example</th>
@@ -287,15 +296,57 @@
             <td>ISO 8601 time zone format</td>
           </tr>
         </table>
-      </section>
-    </div>
+      </div> <!-- reference -->
 
-    <footer>
-      <p>
-        Created by <a href="http://benscheirman.com">Ben Scheirman</a>. Like it? Check out
-        <a href="http://nsscreencast.com">NSScreencast</a> for short, bite-sized screencasts on iOS development topics.
-        Inspired by <a href="http://foragoodstrftime.com">foragoodstrftime.com</a>.
-      </p>
-    </footer>
-  </body>
+      <div class="about toggle">
+        <h2> About this Site </h2>
+        <p>
+          <strong>nsdateformatter.com</strong> is written with <a href="http://swift.org">Swift</a> 3, as
+          a means to learn open-source Swift, the Swift Package Manager, and deploying
+          to linux. It uses the <a href="https://github.com/nestproject/Frank">Frank</a> web application
+          framework, <a href="https://github.com/kylef/Curassow">Curassow</a> for an application server,
+          all behind <a href="http://nginx.org">nginx</a>, hosted on a
+          <a href="https://m.do.co/c/73a6417daf88">Digital Ocean</a> linux VPS.
+        </p>
+
+        <p>
+          The site is <a href="https://github.com/subdigital/nsdateformatter.com">open source</a>, so if you want to fix a bug or submit an enhancement,
+          feel free to submit a pull request.
+        </p>
+
+        <h2> About the Author </h2>
+        <p>
+          <img class="avatar" alt="avatar" src="https://www.gravatar.com/avatar/023a6a37e8177cb2f84a236bbce643cf?s=200" width=100 />
+          Ben Scheirman is a developer from Houston, TX. He is the founder of <a href="http://nsscreencast.com">NSScreencast</a>,
+          where you can find over 200 screencasts on iOS development topics.
+          <strong>Curious? Check out this free screencast on <a href="http://nsscreencast.com/episodes/99-parsing-and-formatting-dates">Parsing and Formatting Dates</a></strong>.
+        </p>
+
+        <p>You can find Ben on <a href="https://twitter.com/subdigital">Twitter</a> or his <a href="http://benscheirman.com">blog</a>.
+      </div> <!-- about -->
+    </section>
+  </div>
+
+  <footer>
+    <p>
+      Created by <a href="http://benscheirman.com">Ben Scheirman</a>. Like it? Check out
+      <a href="http://nsscreencast.com">NSScreencast</a> for short, bite-sized screencasts on iOS development topics.
+      Inspired by <a href="http://foragoodstrftime.com">foragoodstrftime.com</a>.
+    </p>
+  </footer>
+
+
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-57850928-3', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+</body>
 </html>
