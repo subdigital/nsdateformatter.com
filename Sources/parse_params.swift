@@ -9,7 +9,7 @@ func parseParams(htmlBody: String) -> [String: String] {
   for keyValuePair in parts {
     let components = keyValuePair.componentsSeparatedByString("=")
     let key = components[0].stringByRemovingPercentEncoding!
-    let value = components[1].stringByRemovingPercentEncoding!.stringByReplacingOccurrencesOfString("+", withString: " ")
+    let value = components[1].stringByRemovingPercentEncoding!.stringByReplacingOccurrencesOfString("+", withString: " ").stringByReplacingOccurrencesOfString("%2B", withString: "+").stringByReplacingOccurrencesOfString("%3A", withString: ":")
     params[key] = value
   }
 

@@ -21,7 +21,7 @@
     var format = $("#format").val();
 
     var params = $.param({
-      date: date.format(),
+      date: encodeURIComponent(date.format()), // need to properly escape the +
       format: format,
       time_zone_offset: (new Date().getTimezoneOffset() / -60)
     });
