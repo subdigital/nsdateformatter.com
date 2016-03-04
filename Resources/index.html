@@ -17,7 +17,7 @@
 
   function formatDate() {
     var dateInput = $("#date").val();
-    var date = moment(new Date(dateInput));
+    var date = moment(dateInput);
     var format = $("#format").val();
 
     var params = $.param({
@@ -83,7 +83,7 @@
       <form>
         <div class="field">
           <label>Date</label>
-          <input id="date" name="date" type="text" value="March 1, 2016 09:40 PM">
+          <input id="date" name="date" type="text" value="{{ example_date }}">
         </div>
 
         <div class="field">

@@ -67,5 +67,8 @@ get { request in
   var context = [String : Any]()
   context["formats"] = examples
 
+  formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+  context["example_date"] = formatter.stringFromDate(NSDate())
+
   return stencil("index.html", context)
 }
