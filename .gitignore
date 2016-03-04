@@ -1,3 +1,4 @@
 Packages/
 .build/
 .DS_Store
+.vagrant
