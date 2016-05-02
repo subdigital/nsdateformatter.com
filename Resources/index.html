@@ -73,6 +73,9 @@
     $('#locale').change(function() {
       formatDate()
     });
+
+    // also run on load
+    formatDate();
   });
   </script>
 </head>
@@ -97,7 +100,7 @@
           <input id="format" name="format" type="text" value="MMM yyyy">
         </div>
 
-        <div class="field-locale">
+        <div class="field">
           <label>Locale</label>
           <select name="locales" id="locale">
             {% for locale in locales %}
@@ -109,7 +112,7 @@
 
       <div class="result-container">
         <label>Result</label>
-        <h4 id="result">MAR 2016</h4>
+        <h4 id="result">...</h4>
       </div>
     </section>
 
