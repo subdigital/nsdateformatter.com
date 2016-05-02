@@ -59,21 +59,16 @@ header h2 {
 
 .content {
   clear: left;
-  max-width: 960px;
-  width: 80%;
+  max-width: 1136px;
+  width: 90%;
   margin: 3em auto;
 }
 
 .try .field {
   float: left;
-  width: 40%;
+  width: 30%;
   position: relative;
-}
-
-.try .field-locale {
-  float: left;
-  width: 10%;
-  position: relative;
+  margin-right: 10px;
 }
 
 .try label {
@@ -94,13 +89,21 @@ header h2 {
   color: #fff;
 }
 
+.try select {
+  background: transparent;
+  font-size: 16px;
+  color: #fff;
+  height: 39px;
+}
+
 .result-container {
   clear: left;
-  margin-top: 90px;
+  margin-top: 100px;
 }
 
 .result-container h4 {
-  margin-top: 5px;
+  margin: 5px;
+  padding-bottom: 20px;
 }
 
 .panel {
@@ -233,6 +236,17 @@ footer {
     margin-bottom: 60px;
     font-size: 14px;
     height: inherit;
+  }
+
+  .try .field {
+    float: none;
+    display: block;
+    width: 100%;
+    padding: 18px;
+  }
+
+  .result-container {
+    margin: 18px;
   }
 
   .content {
