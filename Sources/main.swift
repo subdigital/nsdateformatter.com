@@ -16,8 +16,10 @@ post("format") { request in
     return renderJSON(["status": "invalid", "error": "date is required"], status: .UnprocessableEntity)
   }
 
+  let localeIdentifier = params["locale"] ?? "en_US_POSIX"
+
   let formatter = NSDateFormatter()
-  formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+  formatter.locale = NSLocale(localeIdentifier: localeIdentifier)
   formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
 
   // Not yet implemented in OSS Swift
@@ -29,7 +31,9 @@ post("format") { request in
   // }
 
   if let date = formatter.dateFromString(dateString) {
-    formatter.dateFormat = params["format"]
+    // setLocalizedDateFormatFromTemplate is not yet implemented
+    // formatter.setLocalizedDateFormatFromTemplate(format)
+    formatter.dateFormat = format
     let formattedString = formatter.stringFromDate(date)
     return renderJSON(["status": "ok", "result": formattedString, "date_string": dateString])
   } else {
@@ -40,7 +44,8 @@ post("format") { request in
 get { request in
 
   let formatter = NSDateFormatter()
-  let locale = NSLocale(localeIdentifier: "en_US_POSIX")
+  let localeIdentifier = "en_US_POSIX"
+  let locale = NSLocale(localeIdentifier: localeIdentifier)
   formatter.locale = locale
   let date = NSDate()
   let formats = [
@@ -69,6 +74,17 @@ get { request in
 
   formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
   context["example_date"] = formatter.stringFromDate(NSDate())
+
+  let locales: [[String:String]] = NSLocale.availableLocaleIdentifiers().sort().map {
+    // Stencil doesn't have Comparison operators so the only way is to check for
+    // the presence of `locale.default` on the front end.
+    var res = ["id" : $0]
+    if $0 == localeIdentifier {
+        res["default"] = "localeIdentifier"
+    }
+    return res
+  }
+  context["locales"] = locales
 
   return stencil("index.html", context)
 }

@@ -19,11 +19,13 @@
     var dateInput = $("#date").val();
     var date = moment(dateInput);
     var format = $("#format").val();
+    var locale = $("#locale option:selected").val();
 
     var params = $.param({
       date: encodeURIComponent(date.format()), // need to properly escape the +
       format: format,
-      time_zone_offset: (new Date().getTimezoneOffset() / -60)
+      time_zone_offset: (new Date().getTimezoneOffset() / -60),
+      locale: locale
     });
 
     if (dateInput.length > 0 && format.length > 0) {
@@ -67,7 +69,12 @@
     $(".try input[type='text']").change(function() {
       formatDate();
     })
-    
+
+    $('#locale').change(function() {
+      formatDate()
+    });
+
+    // also run on load
     formatDate();
   });
   </script>
@@ -91,6 +98,15 @@
         <div class="field">
           <label>Format String</label>
           <input id="format" name="format" type="text" value="MMM yyyy">
+        </div>
+
+        <div class="field">
+          <label>Locale</label>
+          <select name="locales" id="locale">
+            {% for locale in locales %}
+            <option {% if locale.default %}selected{% endif %} value="{{ locale.id }}">{{ locale.id }}</option>
+            {% endfor %}
+          </select>
         </div>
       </form>
 
