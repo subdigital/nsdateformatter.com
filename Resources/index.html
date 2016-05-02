@@ -9,6 +9,10 @@
   <script>try{Typekit.load({ async: true });}catch(e){}</script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.js"></script>
   <script>
+  $(document).ready(function(){
+    formatDate();
+  });
+  
   function showRelated(link) {
     $(".toggle").hide()
     var target = $(link).data("target");
