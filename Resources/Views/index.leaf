@@ -1,0 +1,278 @@
+#extend("base")
+
+#export("head") {
+  <meta charset="utf-8">
+  <title>NSDateFormatter.com - Easy Skeezy Date Formatting for Swift and Objective-C</title>
+  <link rel="stylesheet" href="styles/styles.css" media="screen">
+  <script src="scripts/moment.js"></script>
+  <script src="https://use.typekit.net/leg5xtm.js"></script>
+  <script>try{Typekit.load({ async: true });}catch(e){}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.js"></script>
+  <script src="scripts/app.js"></script>
+}
+
+#export("content") {
+    <section class="try panel">
+      <form>
+        <div class="field">
+          <label>Date</label>
+          <input id="date" name="date" type="text" value="#(example_date)">
+        </div>
+
+        <div class="field">
+          <label>Format String</label>
+          <input id="format" name="format" type="text" value="MMM yyyy">
+        </div>
+
+        <div class="field">
+          <label>Locale</label>
+          <select name="locales" id="locale">
+            #loop(locales, "locale") {
+              <option #if(locale.default) {selected} value="#(locale.id)">#(locale.id)</option>
+            }
+          </select>
+        </div>
+      </form>
+
+      <div class="result-container">
+        <label>Result</label>
+        <h4 id="result">...</h4>
+      </div>
+    </section>
+
+    <ul class="nav">
+      <li><a href="#()examples" class="active" data-target=".examples">Examples</a></li>
+      <li><a href="#()reference" class="" data-target=".reference">Reference</a></li>
+      <li><a href="#()about" class="" data-target=".about">About</a></li>
+    </ul>
+    <section class="info panel">
+      <table class="examples toggle">
+        #loop(formats, "format") {
+        <tr>
+          <td class="example">#(format.value)</td>
+          <td class="format"><pre>#(format.format)</pre></td>
+        </tr>
+        }
+      </table>
+
+      <div class="reference toggle">
+        <p>The following table&#()39;s sample column are mostly based on the time <code>December 14th, 2008 4:35 PM UTC</code>.</p>
+        <table class="reference-table">
+          <tr>
+            <th>Characters</th>
+            <th>Example</th>
+            <th>Description</th>
+          </tr>
+          <tr class="separator">
+            <td colspan="3">Year</td>
+          </tr>
+          <tr>
+            <td>y</td>
+            <td>2008</td>
+            <td>Year, no padding</td>
+          </tr>
+          <tr>
+            <td>yy</td>
+            <td>08</td>
+            <td>Year, two digits (padding with a zero if necessary)</td>
+          </tr>
+          <tr>
+            <td>yyyy</td>
+            <td>2008</td>
+            <td>Year, minimum of four digits (padding with zeros if necessary)</td>
+          </tr>
+          <tr class="separator">
+            <td colspan="3">Quarter</td>
+          </tr>
+          <tr>
+            <td>Q</td>
+            <td>4</td>
+            <td>The quarter of the year. Use QQ if you want zero padding.</td>
+          </tr>
+          <tr>
+            <td>QQQ</td>
+            <td>Q4</td>
+            <td>Quarter including "Q"</td>
+          </tr>
+          <tr>
+            <td>QQQQ</td>
+            <td>4th quarter</td>
+            <td>Quarter spelled out</td>
+          </tr>
+          <tr class="separator">
+            <td colspan="3">Month</td>
+          </tr>
+          <tr>
+            <td>M</td>
+            <td>12</td>
+            <td>The numeric month of the year.  A single M will use '1' for January.</td>
+          </tr>
+          <tr>
+            <td>MM</td>
+            <td>12</td>
+            <td>The numeric month of the year.  A double M will use '01' for January.</td>
+          </tr>
+          <tr>
+            <td>MMM</td>
+            <td>Dec</td>
+            <td>The shorthand name of the month</td>
+          </tr>
+          <tr>
+            <td>MMMM</td>
+            <td>December</td>
+            <td>Full name of the month</td>
+          </tr>
+          <tr>
+            <td>MMMMM</td>
+            <td>D</td>
+            <td>Narrow name of the month</td>
+          </tr>
+          <tr class="separator">
+            <td colspan="3">Day</td>
+          </tr>
+          <tr>
+            <td>d</td>
+            <td>14</td>
+            <td>The day of the month. A single d will use 1 for January 1st.</td>
+          </tr>
+          <tr>
+            <td>dd</td>
+            <td>14</td>
+            <td>The day of the month. A double d will use 01 for January 1st.</td>
+          </tr>
+          <tr>
+            <td>F</td>
+            <td>3rd Tuesday in December</td>
+            <td>The day of week in the month</td>
+          </tr>
+          <tr>
+            <td>E</td>
+            <td>Tues</td>
+            <td>The day of week in the month</td>
+          </tr>
+          <tr>
+            <td>EEEE</td>
+            <td>Tuesday</td>
+            <td>The full name of the day</td>
+          </tr>
+          <tr>
+            <td>EEEEE</td>
+            <td>T</td>
+            <td>The narrow day of week</td>
+          </tr>
+          <tr class="separator">
+            <td colspan="3">Hour</td>
+          </tr>
+          <tr>
+            <td>h</td>
+            <td>4</td>
+            <td>The 12-hour hour.</td>
+          </tr>
+          <tr>
+            <td>hh</td>
+            <td>04</td>
+            <td>The 12-hour hour padding with a zero if there is only 1 digit</td>
+          </tr>
+          <tr>
+            <td>H</td>
+            <td>16</td>
+            <td>The 24-hour hour.</td>
+          </tr>
+          <tr>
+            <td>HH</td>
+            <td>16</td>
+            <td>The 24-hour hour padding with a zero if there is only 1 digit.</td>
+          </tr>
+          <tr>
+            <td>a</td>
+            <td>PM</td>
+            <td>AM / PM for 12-hour time formats</td>
+          </tr>
+          <tr class="separator">
+            <td colspan="3">Minute</td>
+          </tr>
+          <tr>
+            <td>m</td>
+            <td>35</td>
+            <td>The minute, with no padding for zeroes.</td>
+          </tr>
+          <tr>
+            <td>mm</td>
+            <td>35</td>
+            <td>The minute with zero padding.</td>
+          </tr>
+          <tr class="separator">
+            <td colspan="3">Second</td>
+          </tr>
+          <tr>
+            <td>s</td>
+            <td>8</td>
+            <td>The seconds, with no padding for zeroes.</td>
+          </tr>
+          <tr>
+            <td>ss</td>
+            <td>08</td>
+            <td>The seconds with zero padding.</td>
+          </tr>
+          <tr class="separator">
+            <td colspan="3">Time Zone</td>
+          </tr>
+          <tr>
+            <td>zzz</td>
+            <td>CST</td>
+            <td>The 3 letter name of the time zone.  Falls back to GMT-08:00 (hour offset) if the name is not known.</td>
+          </tr>
+          <tr>
+            <td>zzzz</td>
+            <td>Central Standard Time</td>
+            <td>The expanded time zone name, falls back to GMT-08:00 (hour offset) if name is not known.</td>
+          </tr>
+          <tr>
+            <td>zzzz</td>
+            <td>CST-06:00</td>
+            <td>Time zone with abbreviation and offset</td>
+          </tr>
+          <tr>
+            <td>Z</td>
+            <td>-0600</td>
+            <td>RFC 822 GMT format. Can also match a literal Z for Zulu (UTC) time.</td>
+          </tr>
+          <tr>
+            <td>ZZZZZ</td>
+            <td>-06:00</td>
+            <td>ISO 8601 time zone format</td>
+          </tr>
+        </table>
+      </div> <!-- reference -->
+
+      <div class="about toggle">
+        <h2> About this Site </h2>
+        <p>
+          <strong>nsdateformatter.com</strong> is written with <a href="http://swift.org">Swift</a> 3, as
+          a means to learn open-source Swift, the Swift Package Manager, and deploying
+          to linux. It uses the <a href="https://github.com/nestproject/Frank">Frank</a> web application
+          framework, <a href="https://github.com/kylef/Curassow">Curassow</a> for an application server,
+          all behind <a href="http://nginx.org">nginx</a>, hosted on a
+          <a href="https://m.do.co/c/73a6417daf88">Digital Ocean</a> linux VPS.
+        </p>
+
+        <p>
+          The site is <a href="https://github.com/subdigital/nsdateformatter.com">open source</a>, so if you want to fix a bug or submit an enhancement,
+          feel free to submit a pull request.
+        </p>
+
+        <h2> About the Author </h2>
+
+        <p>
+          <img class="avatar" alt="avatar" src="/images/avatar.jpeg" width=100 style="border-radius: 50px" />
+          Ben Scheirman is a developer from Houston, TX. He is the founder of <a href="http://nsscreencast.com">NSScreencast</a>,
+          where you can find over 200 screencasts on iOS development topics.
+        </p>
+
+        <p>
+          <strong>Curious? Check out this free screencast on <a href="http://nsscreencast.com/episodes/99-parsing-and-formatting-dates">Parsing and Formatting Dates</a></strong>.
+        </p>
+
+        <p>You can find Ben on <a href="https://twitter.com/subdigital">Twitter</a> or his <a href="http://benscheirman.com">blog</a>.
+      </div> <!-- about -->
+}
