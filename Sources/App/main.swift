@@ -8,7 +8,7 @@ let exampleFormats = [
   "EEEE, MMM d, yyyy",
   "MM/dd/yyyy",
   "MM-dd-yyyy HH:mm",
-  "MMM d, H:mm a",
+  "MMM d, h:mm a",
   "MMMM yyyy",
   "MMM d, yyyy",
   "E, d MMM yyyy HH:mm:ss Z",
