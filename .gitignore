@@ -3,3 +3,4 @@ Packages
 xcuserdata
 *.xcodeproj
 Config/secrets
+.vagrant
