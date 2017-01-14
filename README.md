@@ -1,15 +1,9 @@
-# Basic Template
+# NSDateFormatter.com
 
-A basic vapor template for starting a new Vapor web application. If you're using vapor toolbox, you can use: `vapor new --template=basic`
+A useful reference for NSDateFormatter. Includes a form for live-formatting of arbitrary dates and formats, and pre-computed reference table based on the current date.
 
-## 📖 Documentation
+Built with Swift 3 on Linux.
 
-Visit the Vapor web framework's [documentation](http://docs.vapor.codes) for instructions on how to use this package.
+To learn more about using `NSDateFormatter`, check out this screencast on [Parsing and Formatting Dates](http://nsscreencast.com/episodes/99-parsing-and-formatting-dates).
 
-## 💧 Community
-
-Join the welcoming community of fellow Vapor developers in [slack](http://vapor.team).
-
-## 🔧 Compatibility
-
-This package has been tested on macOS and Ubuntu.
+Released under the MIT License.
