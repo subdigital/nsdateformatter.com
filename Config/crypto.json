@@ -1,11 +1,12 @@
 {
     "hash": {
         "method": "sha256",
+        "encoding": "hex",
         "key": "9B4B09BB-D35F-4848-BDEA-BA72F9C04FB8"
     },
     "cipher": {
-        "method": "chacha20",
-        "key": "9B4B09BBD35F4848BA72F9C04FB8A561",
-        "iv": "BFC5A037"
+        "method": "aes256",
+        "encoding": "base64",
+        "key": "5/3Yj9sSiQ1Za/FvN8wTodxO9IzVgXspWC1lrmUD0kw="
     }
 }

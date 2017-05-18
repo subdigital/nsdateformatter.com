@@ -5,6 +5,7 @@
     "log": "console",
     "hash": "crypto",
     "cipher": "crypto",
+    "view": "leaf",
     "middleware": {
         "server": [
             "file",
@@ -15,7 +16,7 @@
             "sessions"
         ],
         "client": [
-        
+
         ]
     }
 }

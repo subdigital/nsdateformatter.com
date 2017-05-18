@@ -1,7 +1,10 @@
 import Vapor
+import LeafProvider
 import Foundation
 
-let drop = Droplet()
+let config = try Config()
+try config.addProvider(LeafProvider.Provider.self)
+let drop = try Droplet(config)
 
 
 let exampleFormats = [
@@ -83,4 +86,4 @@ drop.post("format") { req in
     }
 }
 
-drop.run()
+try drop.run()
