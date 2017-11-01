@@ -214,6 +214,11 @@
             <td>08</td>
             <td>The seconds with zero padding.</td>
           </tr>
+          <tr>
+            <td>SSS</td>
+            <td>1234</td>
+            <td>The milliseconds.</td>
+          </tr>
           <tr class="separator">
             <td colspan="3">Time Zone</td>
           </tr>
