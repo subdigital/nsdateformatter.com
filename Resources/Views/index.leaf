@@ -233,7 +233,7 @@
             <td>The expanded time zone name, falls back to GMT-08:00 (hour offset) if name is not known.</td>
           </tr>
           <tr>
-            <td>zzzz</td>
+            <td>ZZZZ</td>
             <td>CST-06:00</td>
             <td>Time zone with abbreviation and offset</td>
           </tr>
