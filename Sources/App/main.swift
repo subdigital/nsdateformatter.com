@@ -13,7 +13,7 @@ let exampleFormats = [
   "MMM d, yyyy",
   "E, d MMM yyyy HH:mm:ss Z",
   "yyyy-MM-dd'T'HH:mm:ssZ",
-  "dd.MM.yy"
+  "dd.MM.yy" //03.12.2072
 ]
 
 
