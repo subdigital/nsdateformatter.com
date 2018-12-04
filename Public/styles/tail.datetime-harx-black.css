@@ -1,0 +1,110 @@
+/*
+ |  tail.DateTime - A pure, vanilla JavaScript DateTime Picker
+ |  @author        SamBrishes <https://github.com/pytesNET/tail.DateTime/>
+ |  @version       0.4.0 - Alpha
+ |
+ |  @license       X11 / MIT License
+ |  @copyright     Copyright © 2018 - SamBrishes, pytesNET <pytes@gmx.net>
+*/
+
+/* @start HARX-BLACK */
+.tail-datetime-calendar{
+    background-color: #202428;
+}
+.tail-datetime-calendar .calendar-tooltip{
+    color: #202428;
+    background-color: #FFFFFF;
+}
+.tail-datetime-calendar .calendar-tooltip:before{
+    border-color: transparent transparent #FFFFFF transparent;
+}
+.tail-datetime-calendar .calendar-actions{
+    background-color: #202428;
+}
+.tail-datetime-calendar .calendar-actions span{
+    color: #c0c4c8;
+}
+.tail-datetime-calendar .calendar-actions span:first-child:before,
+.tail-datetime-calendar .calendar-actions span:first-child:after{
+    background-color: transparent;
+}
+.tail-datetime-calendar .calendar-actions span[data-action]:hover{
+    background-color: #090a0c;
+}
+.tail-datetime-calendar .calendar-actions span.action-prev{
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC\
+    9zdmciIHdpZHRoPSI2IiBoZWlnaHQ9IjE2IiB2aWV3Qm94PSIwIDAgNiAxNiI+PHBhdGggZmlsbD0iI2ZmZmZmZiIgZD0iT\
+    TYgMkwwIDhsNiA2VjJ6Ii8+PC9zdmc+");
+}
+.tail-datetime-calendar .calendar-actions span.action-next{
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC\
+    9zdmciIHdpZHRoPSI2IiBoZWlnaHQ9IjE2IiB2aWV3Qm94PSIwIDAgNiAxNiI+PHBhdGggZmlsbD0iI2ZmZmZmZiIgZD0iT\
+    TAgMTRsNi02LTYtNnYxMnoiLz48L3N2Zz4=");
+}
+.tail-datetime-calendar .calendar-actions span.action-submit{
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC\
+    9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDEyIDE2Ij48cGF0aCBmaWxsPSIjZmZmZmZmIiBkP\
+    SJNMTIgNWwtOCA4LTQtNCAxLjUtMS41TDQgMTBsNi41LTYuNUwxMiA1eiIvPjwvc3ZnPg==");
+}
+.tail-datetime-calendar .calendar-actions span.action-cancel{
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC\
+    9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDEyIDE2Ij48cGF0aCBmaWxsPSIjZmZmZmZmIiBkP\
+    SJNNy40OCA4bDMuNzUgMy43NS0xLjQ4IDEuNDhMNiA5LjQ4bC0zLjc1IDMuNzUtMS40OC0xLjQ4TDQuNTIgOCAuNzcgNC4y\
+    NWwxLjQ4LTEuNDhMNiA2LjUybDMuNzUtMy43NSAxLjQ4IDEuNDhMNy40OCA4eiIvPjwvc3ZnPg==");
+}
+.tail-datetime-calendar .calendar-datepicker{
+    background-color: #202428;
+}
+.tail-datetime-calendar .calendar-datepicker:after{
+    border-top: 1px solid #373d44;
+}
+.tail-datetime-calendar .calendar-datepicker table tr th,
+.tail-datetime-calendar .calendar-datepicker table tr td{
+    color: #c0c4c8;
+}
+.tail-datetime-calendar .calendar-datepicker table tr td.date-previous,
+.tail-datetime-calendar .calendar-datepicker table tr td.date-next{
+    color: #646b72;
+}
+.tail-datetime-calendar .calendar-datepicker table tr td .tooltip-tick{
+    right: 5px;
+    background-color: #FFFFFF;
+}
+.tail-datetime-calendar .calendar-datepicker table tr td.date-select.date-today:before,
+.tail-datetime-calendar .calendar-datepicker table tr td.date-select .tooltip-tick{
+    background-color: #202428 !important;
+}
+.tail-datetime-calendar .calendar-datepicker table tr td.date-disabled{
+    color: #646b72;
+}
+.tail-datetime-calendar .calendar-datepicker table tr td.date-disabled:after{
+    color: #979ea4;
+}
+.tail-datetime-calendar .calendar-datepicker table tr td.calendar-day:hover,
+.tail-datetime-calendar .calendar-datepicker table tr td.calendar-month:hover,
+.tail-datetime-calendar .calendar-datepicker table tr td.calendar-year:hover,
+.tail-datetime-calendar .calendar-datepicker table tr td.calendar-decade:hover{
+    border-color: #6f7d8b;
+}
+.tail-datetime-calendar .calendar-datepicker table tr td.calendar-day.date-disabled:hover,
+.tail-datetime-calendar .calendar-datepicker table tr td.calendar-month.date-disabled:hover,
+.tail-datetime-calendar .calendar-datepicker table tr td.calendar-year.date-disabled:hover,
+.tail-datetime-calendar .calendar-datepicker table tr td.calendar-decade.date-disabled:hover{
+    border-color: #090a0c;
+    background-color: #15171a;
+}
+.tail-datetime-calendar .calendar-timepicker:after{
+    border-top: 1px solid #373d44;
+}
+.tail-datetime-calendar .calendar-timepicker .timepicker-field input[type=number]{
+    color: #c0c4c8;
+    background-color: #101418;
+    border-color: #2f3a46;
+}
+.tail-datetime-calendar .calendar-timepicker .timepicker-field input[type=number]:hover{
+    border-color: #434d58;
+}
+.tail-datetime-calendar .calendar-timepicker .timepicker-field input[type=number]:focus{
+    border-color: #149BE6;
+}
+/* @end HARX-BLACK */

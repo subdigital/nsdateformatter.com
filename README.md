@@ -1,23 +1,20 @@
 <p align="center">
-    <img src="https://cloud.githubusercontent.com/assets/1342803/24797159/52fb0d88-1b90-11e7-85a5-359fff0496a4.png" width="320" alt="MySQL">
+    <img src="https://user-images.githubusercontent.com/1342803/43869499-ce6ce122-9b40-11e8-8894-e0c48eabf270.png" width="320" alt="Web Template">
     <br>
     <br>
-    <a href="http://beta.docs.vapor.codes/getting-started/hello-world/">
-        <img src="http://img.shields.io/badge/read_the-docs-92A8D1.svg" alt="Documentation">
+    <a href="http://docs.vapor.codes/3.0/">
+        <img src="http://img.shields.io/badge/read_the-docs-2196f3.svg" alt="Documentation">
     </a>
-    <a href="http://vapor.team">
-        <img src="http://vapor.team/badge.svg" alt="Slack Team">
+    <a href="https://discord.gg/vapor">
+        <img src="https://img.shields.io/discord/431917998102675485.svg" alt="Team Chat">
     </a>
     <a href="LICENSE">
         <img src="http://img.shields.io/badge/license-MIT-brightgreen.svg" alt="MIT License">
     </a>
-    <a href="https://circleci.com/gh/vapor/mysql">
-        <img src="https://circleci.com/gh/vapor/mysql.svg?style=shield" alt="Continuous Integration">
-    </a>
-    <a href="https://travis-ci.org/vapor/api-template">
-    	<img src="https://travis-ci.org/vapor/api-template.svg?branch=master" alt="Build Status">
+    <a href="https://circleci.com/gh/vapor/web-template">
+        <img src="https://circleci.com/gh/vapor/web-template.svg?style=shield" alt="Continuous Integration">
     </a>
     <a href="https://swift.org">
-        <img src="http://img.shields.io/badge/swift-3.1-brightgreen.svg" alt="Swift 3.1">
+        <img src="http://img.shields.io/badge/swift-4.1-brightgreen.svg" alt="Swift 4.1">
     </a>
-</center>
+</p>

@@ -1,0 +1,35 @@
+/*
+ |  tail.DateTime - A pure, vanilla JavaScript DateTime Picker
+ |  @author        SamBrishes <https://github.com/pytesNET/tail.DateTime/>
+ |  @version       0.4.0 - Alpha
+ |
+ |  @license       X11 / MIT License
+ |  @copyright     Copyright © 2018 - SamBrishes, pytesNET <pytes@gmx.net>
+ */
+
+/* @start ORANGE */
+.tail-datetime-calendar .calendar-actions{
+    background-color: #E67D1E;
+}
+.tail-datetime-calendar .calendar-actions span{
+    text-shadow: -1px -1px 0 #a55812;
+}
+.tail-datetime-calendar .calendar-actions span:first-child:before,
+.tail-datetime-calendar .calendar-actions span:last-child:before{
+    background-color: #bc6415;
+}
+.tail-datetime-calendar .calendar-actions span[data-action]:hover{
+    background-color: #bc6415;
+}
+.tail-datetime-calendar .calendar-datepicker table tr td.date-today:before{
+    background-color: #CD283C;
+}
+.tail-datetime-calendar .calendar-datepicker table tr th.calendar-week.date-select span.inner,
+.tail-datetime-calendar .calendar-datepicker table tr td.calendar-day.date-select span.inner{
+    color: #CD283C;
+    border-color: #CD283C;
+}
+.tail-datetime-calendar .calendar-timepicker .timepicker-field input[type=number]:focus{
+    border-color: #CD283C;
+}
+/* @end ORANGE */
