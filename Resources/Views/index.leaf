@@ -272,7 +272,7 @@
 
   <section class="cta">
     <p>
-        <strong>Want to see how to use <code>NSDateFormatter</code> in Swift?</strong>
+        <strong>Want to see how to use <code>DateFormatter</code> in Swift?</strong>
     </p>
     <div class="cta__box">
       <p>
