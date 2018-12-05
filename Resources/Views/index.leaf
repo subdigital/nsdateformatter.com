@@ -268,10 +268,22 @@
       <p>You can find Ben on <a href="https://twitter.com/subdigital">Twitter</a> or his <a href="http://benscheirman.com">blog</a>.
     </div> <!-- about -->
 
- </section>
- <p style="text-align: center;">
-    <strong>Want to see this in action? Check out this free screencast on <a href="http://nsscreencast.com/episodes/99-parsing-and-formatting-dates">Parsing and Formatting Dates</a></strong>.
- </p>
+  </section>
+
+  <section class="cta">
+    <p>
+        <strong>Want to see how to use <code>NSDateFormatter</code> in Swift?</strong>
+    </p>
+    <div class="cta__box">
+      <p>
+        Check out this <em>free</em> screencast:
+      </p>
+      <p>
+        <h3>
+         <a href="http://nsscreencast.com/episodes/99-parsing-and-formatting-dates">Parsing and Formatting Dates</a>
+        </h3>
+      </p>
+  </section>  
 }
 
 #embed("base")
