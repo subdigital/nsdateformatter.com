@@ -9,10 +9,6 @@
   <script src="https://use.typekit.net/leg5xtm.js"></script>
   <script>try{Typekit.load({ async: true });}catch(e){}</script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.js"></script>
-  <script type="text/javascript" src="/scripts/tail.datetime-full.min.js"></script>
-  <script type="text/javascript" src="/scripts/tail.datetime-all.min.js"></script>
-  <link rel="stylesheet" href="/styles/tail.datetime-default.css" media="screen">
-  <link rel="stylesheet" href="/styles/tail.datetime-custom.css" media="screen">
 
   <script src="scripts/app.js"></script>
 </head>

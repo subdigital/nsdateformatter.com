@@ -36,12 +36,7 @@ function formatDate() {
   }
 }
 
-function loadTailDateTime() {
-  tail.DateTime(".tail-datetime-field")
-}
-
 $(function() {
-  // loadTailDateTime();
   var activeLink = $("ul.nav li a.active")[0];
   showRelated(activeLink);
 
