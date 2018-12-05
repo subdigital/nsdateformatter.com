@@ -1,9 +1,8 @@
 Packages
-.build
+.build/
 xcuserdata
 .DS_Store
 *.xcodeproj
-Config/secrets
 .vagrant
 *.swp
 *.orig

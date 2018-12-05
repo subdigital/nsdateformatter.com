@@ -13,7 +13,7 @@ function formatDate() {
   var params = $.param({
     date: encodeURIComponent(date.format()), // need to properly escape the +
     format: format,
-    time_zone_offset: (new Date().getTimezoneOffset() / -60),
+    timeZoneOffset: (new Date().getTimezoneOffset() / -60),
     locale: locale
   });
 
@@ -36,7 +36,12 @@ function formatDate() {
   }
 }
 
+function loadTailDateTime() {
+  tail.DateTime(".tail-datetime-field")
+}
+
 $(function() {
+  // loadTailDateTime();
   var activeLink = $("ul.nav li a.active")[0];
   showRelated(activeLink);
 

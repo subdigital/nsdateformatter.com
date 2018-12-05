@@ -1,17 +1,16 @@
+// swift-tools-version:4.0
 import PackageDescription
 
 let package = Package(
     name: "nsdateformatter",
     dependencies: [
-        .Package(url: "https://github.com/vapor/vapor.git", majorVersion: 1, minor: 1)
+        .package(url: "https://github.com/vapor/vapor.git", from: "3.0.0"),
+        .package(url: "https://github.com/vapor/leaf.git", from: "3.0.0"),
     ],
-    exclude: [
-        "Config",
-        "Database",
-        "Localization",
-        "Public",
-        "Resources",
-        "Tests",
+    targets: [
+        .target(name: "App", dependencies: ["Leaf", "Vapor"]),
+        .target(name: "Run", dependencies: ["App"]),
+        .testTarget(name: "AppTests", dependencies: ["App"])
     ]
 )
 
