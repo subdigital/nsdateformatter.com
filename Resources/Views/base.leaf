@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta charset="utf-8">
   <title>NSDateFormatter.com - Easy Skeezy Date Formatting for Swift and Objective-C</title>
-  <link rel="stylesheet" href="styles/styles.css" media="screen">
+  <link rel="stylesheet" href="styles/dist/styles.css" media="screen">
   <script src="scripts/moment.js"></script>
   <script src="https://use.typekit.net/leg5xtm.js"></script>
   <script>try{Typekit.load({ async: true });}catch(e){}</script>
@@ -18,12 +18,14 @@
 </head>
 <body>
 
-  <header>
-    <h1>NSDateFormatter</h1>
-    <h2>Easy Skeezy Date Formatting for Swift and Objective-C</h2>
-  </header>
+  <div class="container">
+    <header>
+      <h1>NSDateFormatter<span class="secondary">.com</span></h1>
+      <h2>Easy Skeezy Date Formatting for Swift and Objective-C</h2>
+    </header>
+  </div>
 
-  <div class="content">
+  <div class="container content">
     #get(content)
   </div>
 

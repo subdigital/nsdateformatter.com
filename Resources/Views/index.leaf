@@ -25,7 +25,7 @@
     </form>
 
     <div class="result-container">
-      <label>Result</label>
+      <label class="result-header">Result</label>
       <h4 id="result">...</h4>
     </div>
   </section>
@@ -35,8 +35,9 @@
     <li><a href="#reference" class="" data-target=".reference">Reference</a></li>
     <li><a href="#about" class="" data-target=".about">About</a></li>
   </ul>
+
   <section class="info panel">
-    <table class="examples toggle">
+    <table class="examples toggle table--full-width">
       #for(format in formats) {
         <tr>
           <td class="example">#(format.value)</td>
@@ -47,7 +48,7 @@
 
     <div class="reference toggle">
       <p>The following table’s sample column are mostly based on the time <code>December 14th, 2008 4:35 PM UTC</code>.</p>
-      <table class="reference-table">
+      <table class="reference-table table--full-width">
         <tr>
           <th>Characters</th>
           <th>Example</th>
@@ -243,10 +244,10 @@
     <div class="about toggle">
       <h2> About this Site </h2>
       <p>
-        <strong>nsdateformatter.com</strong> is written with <a href="http://swift.org">Swift</a> 3, as
+        <strong>nsdateformatter.com</strong> is written with <a href="http://swift.org">Swift</a> 4.2, as
         a means to learn open-source Swift, the Swift Package Manager, and deploying
-        to Linux. It uses the <a href="https://github.com/vapor/vapor" target="_blank">Vapor</a> web application
-        framework and deployed to <a href="https://heroku.com" target="_blank">Heroku</a>.
+        to Linux. It uses the <a href="https://vapor.codes" target="_blank">Vapor</a> web application
+        framework and deployed is to <a href="https://heroku.com" target="_blank">Heroku</a>.
       </p>
 
       <p>
@@ -256,18 +257,21 @@
 
       <h2> About the Author </h2>
 
-      <p>
-        <img class="avatar" alt="avatar" src="/images/avatar.jpeg" width=100 style="border-radius: 50px" />
-        Ben Scheirman is a developer from Houston, TX. He is the founder of <a href="http://nsscreencast.com">NSScreencast</a>,
-        where you can find over 350 screencasts on iOS development topics.
-      </p>
-
-      <p>
-        <strong>Curious? Check out this free screencast on <a href="http://nsscreencast.com/episodes/99-parsing-and-formatting-dates">Parsing and Formatting Dates</a></strong>.
-      </p>
+      <div class="media">
+        <img class="media__avatar" alt="avatar" src="/images/avatar.jpeg" />
+        <div class="media__main">
+          Ben Scheirman is a developer from Houston, TX. He is the founder of <a href="http://nsscreencast.com">NSScreencast</a>,
+          where you can find over 350 screencasts on iOS development topics.
+        </div>
+      </div>
 
       <p>You can find Ben on <a href="https://twitter.com/subdigital">Twitter</a> or his <a href="http://benscheirman.com">blog</a>.
     </div> <!-- about -->
+
+ </section>
+ <p style="text-align: center;">
+    <strong>Want to see this in action? Check out this free screencast on <a href="http://nsscreencast.com/episodes/99-parsing-and-formatting-dates">Parsing and Formatting Dates</a></strong>.
+ </p>
 }
 
 #embed("base")
