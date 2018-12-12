@@ -1,6 +1,6 @@
 $linkColor: #BFA2D8;
 $textLightSoft: rgba(255, 255, 255, 0.6);
-$textLightSofter: rgba(255, 255, 255, 0.6); 
+$textLightSofter: rgba(255, 255, 255, 0.6);
 
 body {
   background-color: #302D42;
@@ -208,7 +208,7 @@ table.examples td.example {
 }
 
 table.reference-table {
-  
+
   th {
     text-align: left;
     padding: 12px;
@@ -216,6 +216,9 @@ table.reference-table {
     color: #302D42;
   }
   tr.separator td {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #656;
     background-color: rgba(0, 0, 0, 0.3);
   }
   td {
@@ -232,6 +235,16 @@ table.reference-table {
   }
   td:last-child {
     border-right: none;
+  }
+
+  tfoot {
+    td {
+      padding: 12px;
+      font-size: 14px;
+      text-align: center;
+      color: #656;
+      background-color: rgba(0, 0, 0, 0.3);
+    }
   }
 }
 
@@ -325,7 +338,7 @@ section.cta {
   .result-container {
     margin: 0.5em 1em;
   }
-  
+
   ul.nav {
     justify-content: center;
   }
