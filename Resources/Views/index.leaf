@@ -141,18 +141,23 @@
         </tr>
         <tr>
           <td>E</td>
-          <td>Tues</td>
-          <td>The day of week in the month</td>
+          <td>Tue</td>
+          <td>The abbreviation for the day of the week</td>
         </tr>
         <tr>
           <td>EEEE</td>
           <td>Tuesday</td>
-          <td>The full name of the day</td>
+          <td>The wide name of the day of the week</td>
         </tr>
         <tr>
           <td>EEEEE</td>
           <td>T</td>
           <td>The narrow day of week</td>
+        </tr>
+        <tr>
+          <td>EEEEEE</td>
+          <td>Tu</td>
+          <td>The short day of week</td>
         </tr>
         <tr class="separator">
           <td colspan="3">Hour</td>
