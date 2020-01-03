@@ -1,7 +1,7 @@
 'use strict';
 
 var filter = require('through2-filter').obj;
-var stringify = require("json-stable-stringify");
+var stringify = require("json-stable-stringify-without-jsonify");
 
 var ES6Set;
 if (typeof global.Set === 'function') {

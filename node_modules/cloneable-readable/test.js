@@ -6,6 +6,7 @@ var test = require('tape').test
 var from = require('from2')
 var crypto = require('crypto')
 var sink = require('flush-write-stream')
+var pump = require('pump')
 var cloneable = require('./')
 
 test('basic passthrough', function (t) {
@@ -681,4 +682,21 @@ test('big file', function (t) {
 
   // Pipe a long time after
   setTimeout(pipe.bind(null, stream.clone(), 2), 1000)
+})
+
+test('pump error', function (t) {
+  t.plan(1)
+
+  var err = new Error('kaboom')
+
+  pump([
+    cloneable(from(function () {
+      this.destroy(err)
+    })),
+    sink(function (chunk, enc, cb) {
+      t.fail('this should not be called')
+    })
+  ], function (_err) {
+    t.equal(_err, err)
+  })
 })

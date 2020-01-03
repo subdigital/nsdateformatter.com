@@ -3,7 +3,7 @@
 var domain = require('domain');
 
 var eos = require('end-of-stream');
-var tick = require('process-nextick-args');
+var p = require('process-nextick-args');
 var once = require('once');
 var exhaust = require('stream-exhaust');
 
@@ -82,7 +82,7 @@ function asyncDone(fn, cb) {
     }
   }
 
-  tick(asyncRunner);
+  p.nextTick(asyncRunner);
 }
 
 module.exports = asyncDone;

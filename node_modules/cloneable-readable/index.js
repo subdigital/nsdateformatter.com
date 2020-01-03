@@ -76,6 +76,7 @@ function forwardDestroy (src, dest) {
   src.on('close', onClose)
 
   function destroy (err) {
+    src.removeListener('close', onClose)
     dest.destroy(err)
   }
 

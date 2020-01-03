@@ -1,27 +1,27 @@
-const os = require('os');
-const path = require('path');
-const userHome = require('homedir-polyfill')();
+var os = require('os');
+var path = require('path');
+var userHome = require('homedir-polyfill')();
 
-const env = process.env;
-const name = 'js-v8flags';
+var env = process.env;
+var name = 'js-v8flags';
 
-function macos () {
-  const library = path.join(userHome, 'Library');
+function macos() {
+  var library = path.join(userHome, 'Library');
   return path.join(library, 'Caches', name);
 }
 
-function windows () {
-  const appData = env.LOCALAPPDATA || path.join(userHome, 'AppData', 'Local');
+function windows() {
+  var appData = env.LOCALAPPDATA || path.join(userHome, 'AppData', 'Local');
   return path.join(appData, name);
 }
 
 // https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
-function linux () {
-  const username = path.basename(userHome);
+function linux() {
+  var username = path.basename(userHome);
   return path.join(env.XDG_CACHE_HOME || path.join(userHome, '.cache'), name);
 }
 
-module.exports = function (platform) {
+module.exports = function(platform) {
   if (!userHome) {
     return os.tmpdir();
   }

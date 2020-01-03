@@ -15,14 +15,20 @@ Turn node's process.version into something useful.
 ```js
 var nodeVersion = require('parse-node-version')(process.version);
 
-console.log(nodeVersion.major, nodeVersion.minor, nodeVersion.patch);
+console.log(
+  nodeVersion.major,
+  nodeVersion.minor,
+  nodeVersion.patch,
+  nodeVersion.pre,
+  nodeVersion.build
+);
 ```
 
 ## API
 
 ### parseVersion(nodeVersionString)
 
-Takes a node version string (usually `process.version`) and returns an object with the `major`, `minor`, and `patch` keys which will all be parsed digits.
+Takes a node version string (usually `process.version`) and returns an object with the `major`/`minor`/`patch` (which will all be numbers) and `pre`/`build` keys (which will always be a string). If the version doesn't contain any pre-release or build information, the properties will be returned as empty string.
 
 ## License
 

@@ -28,6 +28,10 @@ function map(values, iterator, extensions, done) {
 
   var exts = helpers.defaultExtensions(extensions);
 
+  if (length === 0) {
+    return done(null, results);
+  }
+
   for (idx = 0; idx < length; idx++) {
     var key = keys[idx];
     next(key);

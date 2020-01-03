@@ -6,7 +6,7 @@
 
 # async-done
 
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![AppVeyor Build Status][appveyor-image]][appveyor-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Gitter chat][gitter-image]][gitter-url]
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Azure Pipelines Build Status][azure-pipelines-image]][azure-pipelines-url] [![Travis Build Status][travis-image]][travis-url] [![AppVeyor Build Status][appveyor-image]][appveyor-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Gitter chat][gitter-image]][gitter-url]
 
 Allows libraries to handle various caller provided asynchronous functions uniformly. Maps promises, observables, child processes and streams, and callbacks to callback style.
 
@@ -68,8 +68,8 @@ Optionally takes a callback to call when async tasks are complete.
   - Completion: [onFulfilled][promise-onfulfilled] method called
   - Error: [onRejected][promise-onrejected] method called
 * `Observable` (e.g. from [RxJS v5][rxjs5-observable] or [RxJS v4][rxjs5-observable]) returned
-  - Completion: [complete][rxjs5-subscriber-complete] method called
-  - Error: [error][rxjs5-subscriber-error] method called
+  - Completion: [complete][rxjs5-observer-complete] method called
+  - Error: [error][rxjs5-observer-error] method called
 
 __Warning:__ Sync tasks are __not supported__ and your function will never complete if the one of the above strategies is not used to signal completion. However, thrown errors will be caught by the domain.
 
@@ -91,6 +91,25 @@ Errors can be caused by:
 
 MIT
 
+[downloads-image]: https://img.shields.io/npm/dm/async-done.svg
+[npm-url]: https://www.npmjs.com/package/async-done
+[npm-image]: https://img.shields.io/npm/v/async-done.svg
+
+[azure-pipelines-url]: https://dev.azure.com/gulpjs/gulp/_build/latest?definitionId=6&branchName=master
+[azure-pipelines-image]: https://dev.azure.com/gulpjs/gulp/_apis/build/status/async-done?branchName=master
+
+[travis-url]: https://travis-ci.org/gulpjs/async-done
+[travis-image]: https://img.shields.io/travis/gulpjs/async-done.svg?label=travis-ci
+
+[appveyor-url]: https://ci.appveyor.com/project/gulpjs/async-done
+[appveyor-image]: https://img.shields.io/appveyor/ci/gulpjs/async-done.svg?label=appveyor
+
+[coveralls-url]: https://coveralls.io/r/gulpjs/async-done
+[coveralls-image]: https://img.shields.io/coveralls/gulpjs/async-done/master.svg
+
+[gitter-url]: https://gitter.im/gulpjs/gulp
+[gitter-image]: https://badges.gitter.im/gulpjs/gulp.svg
+
 [end-of-stream]: https://www.npmjs.com/package/end-of-stream
 [domains]: http://nodejs.org/api/domain.html
 [event-stream]: https://github.com/dominictarr/event-stream
@@ -100,19 +119,3 @@ MIT
 [rxjs5-observable]: http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html
 [rxjs5-observer-complete]: http://reactivex.io/rxjs/class/es6/MiscJSDoc.js~ObserverDoc.html#instance-method-complete
 [rxjs5-observer-error]: http://reactivex.io/rxjs/class/es6/MiscJSDoc.js~ObserverDoc.html#instance-method-error
-
-[downloads-image]: http://img.shields.io/npm/dm/async-done.svg
-[npm-url]: https://www.npmjs.com/package/async-done
-[npm-image]: http://img.shields.io/npm/v/async-done.svg
-
-[travis-url]: https://travis-ci.org/gulpjs/async-done
-[travis-image]: http://img.shields.io/travis/gulpjs/async-done.svg?label=travis-ci
-
-[appveyor-url]: https://ci.appveyor.com/project/gulpjs/async-done
-[appveyor-image]: https://img.shields.io/appveyor/ci/gulpjs/async-done.svg?label=appveyor
-
-[coveralls-url]: https://coveralls.io/r/gulpjs/async-done
-[coveralls-image]: http://img.shields.io/coveralls/gulpjs/async-done/master.svg
-
-[gitter-url]: https://gitter.im/gulpjs/gulp
-[gitter-image]: https://badges.gitter.im/gulpjs/gulp.svg
