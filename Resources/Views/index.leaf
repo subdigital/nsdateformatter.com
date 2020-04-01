@@ -337,6 +337,10 @@
           This class is dedicated to handle the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO8601</a> standard
           and all its possible variants and edge cases better than using a custom <tt>dateFormat</tt> would.
         </p>
+        <p class="quote">
+          Tip: One of the little-known options of <tt>ISO8601DateFormatter</tt> is that it is also able to handle
+          fractional seconds if you set it up using <tt>formatter.formatOptions.insert(.withFractionalSeconds)</tt>.
+        </p>
 
         <h3> Always use the en_US_POSIX locale for fixed formats </h3>
 
