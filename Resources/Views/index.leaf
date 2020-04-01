@@ -262,7 +262,7 @@
 
         <p>You should be aware that using a custom <tt>dateFormat</tt> comes with a risk of falling into some fallacies.</p>
         <p>
-            Especially, you need to realise that the user can use different <tt>Locales</tt>,
+            Especially, you need to realize that the user can use different <tt>Locales</tt>,
             and that date formats are different for different locales, regions and user settings.
             For example one date formatted with a <tt>dateFormat</tt> that fits the US might become confusing anyone in for Europe.
         </p>
@@ -304,7 +304,7 @@
           that you can otherwise miss when using a custom and hardcoded <tt>dateFormat</tt>.
         </p>
         <p>
-          I would even advice you to convince your designer against using a custom format and explain them that Date
+          I would even advise you to convince your designer against using a custom format and explain them that Date
           and Time is <a href="https://yourcalendricalfallacyis.com/">a tricky subject with lots of edge cases</a>
           and that it's generally not worth using a custom format that might fit their assumptions about the locale
           and region they're used to use but might not fit a lot of other's.
@@ -327,11 +327,13 @@
             also has a dedicated section about those cases here</a>.
         </p>
 
-        <h3> Using ISO8601DateFormatter </h3>
+        <h3> Using <tt>ISO8601DateFormatter</tt> </h3>
 
         <p>
           If you need to parse <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO8601</a> dates, consider
           using <tt>ISODateFormatter</tt> instead of a <tt>DateFormatter</tt> with a custom <tt>dateFormat</tt>.
+        </p>
+        <p>
           This class is dedicated to handle the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO8601</a> standard
           and all its possible variants and edge cases better than using a custom <tt>dateFormat</tt> would.
         </p>
@@ -349,6 +351,8 @@
           <tt>en_US_POSIX</tt> is a special locale that guarantees that the formatting and parsing won’t depend on
           the phone’s locale, and is designed exactly for parsing those “internet dates with fixed format”.
         </p>
+
+        <p class="footnote">This section was contributed by Olivier Halligon</p>
     </div> <!-- best-practices -->
 
     <div class="about toggle">
