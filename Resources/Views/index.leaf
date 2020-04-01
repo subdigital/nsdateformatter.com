@@ -264,7 +264,7 @@
         <p>
           Especially, you need to realize that the user can use different <tt>Locales</tt>,
           and that date formats are different for different locales, regions and user settings.
-          For example one date formatted with a <tt>dateFormat</tt> that fits the US might become confusing anyone in for Europe.
+          For example one date formatted with a <tt>dateFormat</tt> that fits the US might become confusing for anyone in Europe.
         </p>
 
         <h2> The TL;DR </h2>
