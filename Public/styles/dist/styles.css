@@ -202,6 +202,18 @@ table.reference-table tfoot td {
   color: #656;
   background-color: rgba(0, 0, 0, 0.3); }
 
+.quote {
+  font-style:italic;
+  border-left: 5px solid gray;
+  padding-left: 5px; }
+
+.footnote {
+  padding: 12px;
+  font-size: 14px;
+  text-align: center;
+  color: #656;
+  background-color: rgba(0, 0, 0, 0.3); }
+
 .about {
   padding: 1em;
   color: rgba(255, 255, 255, 0.8); }
