@@ -274,7 +274,7 @@
             Explain the date fallacies to your designer if you need to.
           </li>
           <li>
-            If you can't find a fitting <tt>dateStyle/typeStyle</tt> to format your UI dates, then at least use
+            If you can't find a fitting <tt>dateStyle/timeStyle</tt> to format your UI dates, then at least use
             <a href="https://developer.apple.com/documentation/foundation/dateformatter/1417087-setlocalizeddateformatfromtempla">
               <tt>dateFormatter.setLocalizedDateFormatFromTemplate(…)</tt>
             </a> to account for the user's locale.
