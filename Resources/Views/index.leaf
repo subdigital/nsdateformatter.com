@@ -262,9 +262,9 @@
 
         <p>You should be aware that using a custom <tt>dateFormat</tt> comes with a risk of falling into some fallacies.</p>
         <p>
-            Especially, you need to realize that the user can use different <tt>Locales</tt>,
-            and that date formats are different for different locales, regions and user settings.
-            For example one date formatted with a <tt>dateFormat</tt> that fits the US might become confusing anyone in for Europe.
+          Especially, you need to realize that the user can use different <tt>Locales</tt>,
+          and that date formats are different for different locales, regions and user settings.
+          For example one date formatted with a <tt>dateFormat</tt> that fits the US might become confusing anyone in for Europe.
         </p>
 
         <h2> The TL;DR </h2>
@@ -323,8 +323,8 @@
         <h2> Working with ISO8601 dates and fixed formats for APIs </h2>
 
         <p class="quote">
-            Apple Documentation <a href="https://developer.apple.com/documentation/foundation/dateformatter#2528261">
-            also has a dedicated section about those cases here</a>.
+          Apple Documentation <a href="https://developer.apple.com/documentation/foundation/dateformatter#2528261">
+          also has a dedicated section about those cases here</a>.
         </p>
 
         <h3> Using <tt>ISO8601DateFormatter</tt> </h3>
@@ -348,12 +348,29 @@
           In last resort, if you need to parse a date for an API that doesn’t fall into ISO8601 format,
           but that also isn’t intended for UI (and should thus <em>not</em> depend on the user’s locale/region/language),
           then that is the only case when you can use a fixed string as a value for <tt>dateFormatter.dateFormat</tt>.
-        </p><p>
+        </p>
+        <p>
           <strong>BUT</strong> then <strong>ALWAYS also set</strong> your <tt>dateFormatter.locale</tt> to
           <tt>Locale(identifier: "en_US_POSIX")</tt> on your <tt>DateFormatter</tt>.
-        </p><p>
+        </p>
+        <p class="quote"">
           <tt>en_US_POSIX</tt> is a special locale that guarantees that the formatting and parsing won’t depend on
           the phone’s locale, and is designed exactly for parsing those “internet dates with fixed format”.
+        </p>
+
+        <p>
+          If you don't force the locale to <tt>en_US_POSIX</tt>, there are risks that your code might seem to work in some
+          regions (like the US), but will fail to parse your API responses if the user has its phone set in another region
+          (e.g. <tt>en_GB</tt>, <tt>en_ES</tt> or <tt>fr_FR</tt>), where date formatting is different, or use 12-hour time
+          and not 24-hour time.
+        </p>
+        <p>
+          You can test this kind of edge case on device by setting your phone settings to use <tt>en_ES</tt> for example and set
+          it to use 12-hour with am/pm, and try to parse a date like <tt>2020-01-15T22:00:00Z</tt>.
+        </p>
+        <p>
+          For more information about those commonly overlooked cases, you can read
+          <a href="https://developer.apple.com/library/archive/qa/qa1480/_index.html">Apple's TN1480</a>.
         </p>
 
         <p class="footnote">This section was contributed by Olivier Halligon</p>
