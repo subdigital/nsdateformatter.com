@@ -202,6 +202,11 @@ table.reference-table tfoot td {
   color: #656;
   background-color: rgba(0, 0, 0, 0.3); }
 
+.quote {
+  font-style:italic;
+  border-left: 5px solid gray;
+  padding-left: 5px; }
+
 .about {
   padding: 1em;
   color: rgba(255, 255, 255, 0.8); }
