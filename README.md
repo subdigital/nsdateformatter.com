@@ -1,6 +1,6 @@
 # NSDateFormatter.com
 
-A useful reference for `NSDateFormatter` (nay `DateFormatter`). Includes a form for live-formatting of arbitrary dates and formats, and pre-computed reference table based on the current date.
+A useful reference for `NSDateFormatter` (née `DateFormatter`). Includes a form for live-formatting of arbitrary dates and formats, and pre-computed reference table based on the current date.
 
 Built with Swift 4.2 on Linux.
 
