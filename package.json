@@ -4,6 +4,7 @@
     "gulp": "^4.0.2",
     "gulp-postcss": "^8.0.0",
     "gulp-sass": "^4.1.0",
+    "kind-of": "^6.0.3",
     "set-value": "^2.0.1"
   }
 }
