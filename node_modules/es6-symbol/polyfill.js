@@ -4,7 +4,7 @@
 
 var d                    = require("d")
   , validateSymbol       = require("./validate-symbol")
-  , NativeSymbol         = require("es5-ext/global").Symbol
+  , NativeSymbol         = require("ext/global-this").Symbol
   , generateName         = require("./lib/private/generate-name")
   , setupStandardSymbols = require("./lib/private/setup/standard-symbols")
   , setupSymbolRegistry  = require("./lib/private/setup/symbol-registry");

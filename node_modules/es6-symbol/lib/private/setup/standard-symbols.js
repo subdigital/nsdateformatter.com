@@ -1,7 +1,7 @@
 "use strict";
 
 var d            = require("d")
-  , NativeSymbol = require("es5-ext/global").Symbol;
+  , NativeSymbol = require("ext/global-this").Symbol;
 
 module.exports = function (SymbolPolyfill) {
 	return Object.defineProperties(SymbolPolyfill, {

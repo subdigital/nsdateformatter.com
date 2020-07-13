@@ -2,6 +2,6 @@
 
 "use strict";
 
-var Symbol = require("es5-ext/global").Symbol;
+var Symbol = require("ext/global-this").Symbol;
 
 module.exports = typeof Symbol === "function" && typeof Symbol() === "symbol";

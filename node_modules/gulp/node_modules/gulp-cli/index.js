@@ -28,7 +28,7 @@ var logVerify = require('./lib/shared/log/verify');
 var logBlacklistError = require('./lib/shared/log/blacklist-error');
 
 // Get supported ranges
-var ranges = fs.readdirSync(__dirname + '/lib/versioned/');
+var ranges = fs.readdirSync(path.join(__dirname, '/lib/versioned/'));
 
 // Set env var for ORIGINAL cwd
 // before anything touches it
@@ -62,7 +62,12 @@ var parser = yargs.usage(usage, cliOptions);
 var opts = parser.argv;
 
 cli.on('require', function(name) {
-  log.info('Requiring external module', ansi.magenta(name));
+  // This is needed because interpret needs to stub the .mjs extension
+  // Without the .mjs require hook, rechoir blows up
+  // However, we don't want to show the mjs-stub loader in the logs
+  if (path.basename(name, '.js') !== 'mjs-stub') {
+    log.info('Requiring external module', ansi.magenta(name));
+  }
 });
 
 cli.on('requireFail', function(name, error) {
@@ -162,10 +167,15 @@ function handleArguments(env) {
       ansi.red(missingGulpMessage),
       ansi.magenta(tildify(env.cwd))
     );
+    var hasYarn = fs.existsSync(path.join(env.cwd, 'yarn.lock'));
     /* istanbul ignore next */
     var installCommand =
       missingNodeModules
-        ? 'npm install'
+        ? hasYarn
+          ? 'yarn install'
+          : 'npm install'
+        : hasYarn
+          ? 'yarn add gulp'
         : 'npm install gulp';
     log.error(ansi.red('Try running: ' + installCommand));
     exit(1);

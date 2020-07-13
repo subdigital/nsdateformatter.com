@@ -1,6 +1,6 @@
 "use strict";
 
-var global   = require("es5-ext/global")
+var global   = require("ext/global-this")
   , polyfill = require("../polyfill");
 
 module.exports = function (t, a) {

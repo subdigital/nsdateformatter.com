@@ -1,6 +1,6 @@
 "use strict";
 
-var global     = require("es5-ext/global")
+var global     = require("ext/global-this")
   , validTypes = { object: true, symbol: true };
 
 module.exports = function () {
