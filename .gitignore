@@ -6,3 +6,4 @@ xcuserdata
 .vagrant
 *.swp
 *.orig
+.swiftpm
