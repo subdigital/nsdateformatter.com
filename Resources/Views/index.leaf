@@ -361,11 +361,11 @@
         <p>
           If you don't force the locale to <tt>en_US_POSIX</tt>, there are risks that your code might seem to work in some
           regions (like the US), but will fail to parse your API responses if the user has its phone set in another region
-          (e.g. <tt>en_GB</tt>, <tt>en_ES</tt> or <tt>fr_FR</tt>), where date formatting is different, or use 12-hour time
+          (e.g. <tt>en_GB</tt>, <tt>es_ES</tt> or <tt>fr_FR</tt>), where date formatting is different, or use 12-hour time
           and not 24-hour time.
         </p>
         <p>
-          You can test this kind of edge case on device by setting your phone settings to use <tt>en_ES</tt> for example and set
+          You can test this kind of edge case on device by setting your phone settings to use <tt>es_ES</tt> for example and set
           it to use 12-hour with am/pm, and try to parse a date like <tt>2020-01-15T22:00:00Z</tt>.
         </p>
         <p>
