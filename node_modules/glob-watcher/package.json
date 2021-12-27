@@ -1,6 +1,6 @@
 {
   "name": "glob-watcher",
-  "version": "5.0.3",
+  "version": "5.0.5",
   "description": "Watch globs and execute a function upon change, with intelligent defaults for debouncing and queueing.",
   "author": "Gulp Team <team@gulpjs.com> (http://gulpjs.com/)",
   "contributors": [],
@@ -26,6 +26,7 @@
     "chokidar": "^2.0.0",
     "is-negated-glob": "^1.0.0",
     "just-debounce": "^1.0.0",
+    "normalize-path": "^3.0.0",
     "object.defaults": "^1.1.0"
   },
   "devDependencies": {
@@ -37,7 +38,6 @@
     "istanbul-coveralls": "^1.0.1",
     "mocha": "^2.0.0",
     "mocha-lcov-reporter": "^1.2.0",
-    "normalize-path": "^2.1.1",
     "rimraf": "^2.6.1",
     "through2": "^2.0.1"
   },

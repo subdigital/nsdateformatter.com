@@ -1,6 +1,6 @@
 {
 	"name": "ext",
-	"version": "1.4.0",
+	"version": "1.6.0",
 	"description": "JavaScript utilities with respect to emerging standard",
 	"author": "Mariusz Nowak <medyk@medikoo.com> (http://www.medikoo.com/)",
 	"keywords": [
@@ -22,21 +22,22 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/medikoo/es5-ext/tree/ext"
+		"url": "https://github.com/medikoo/es5-ext#ext"
 	},
 	"dependencies": {
-		"type": "^2.0.0"
+		"type": "^2.5.0"
 	},
 	"devDependencies": {
-		"chai": "^4.2.0",
-		"eslint": "^6.7.1",
-		"eslint-config-medikoo": "^2.7.0",
+		"chai": "^4.3.4",
+		"eslint": "^7.32.0",
+		"eslint-config-medikoo": "^4.1.0",
 		"git-list-updated": "^1.2.1",
-		"husky": "^3.1.0",
-		"lint-staged": "^9.5.0",
-		"mocha": "^6.2.2",
-		"prettier-elastic": "^1.18.2",
-		"sinon": "^7.5.0"
+		"husky": "^4.3.8",
+		"lint-staged": "^11.1.2",
+		"mocha": "^6.2.3",
+		"prettier-elastic": "^2.2.1",
+		"sinon": "^8.1.1",
+		"timers-ext": "^0.1.7"
 	},
 	"husky": {
 		"hooks": {
@@ -52,7 +53,7 @@
 		]
 	},
 	"eslintIgnore": [
-		"_es5-ext/*"
+		"_es5-ext"
 	],
 	"eslintConfig": {
 		"extends": "medikoo/es3",
@@ -86,7 +87,10 @@
 				}
 			},
 			{
-				"files": "test/thenable_/finally.js",
+				"files": [
+					"test/promise/limit.js",
+					"test/thenable_/finally.js"
+				],
 				"globals": {
 					"Promise": true
 				}

@@ -6,6 +6,7 @@ var asyncDone = require('async-done');
 var defaults = require('object.defaults/immutable');
 var isNegatedGlob = require('is-negated-glob');
 var anymatch = require('anymatch');
+var normalize = require('normalize-path');
 
 var defaultOpts = {
   delay: 200,
@@ -71,24 +72,34 @@ function watch(glob, options, cb) {
     }
   }
 
-  function shouldBeIgnored(path) {
-    var positiveMatch = anymatch(positives, path, true);
-    var negativeMatch = anymatch(negatives, path, true);
-    // If negativeMatch is -1, that means it was never negated
-    if (negativeMatch === -1) {
-      return false;
+  var toWatch = positives.filter(exists);
+
+  function joinCwd(glob) {
+    if (glob && opt.cwd) {
+      return normalize(opt.cwd + '/' + glob);
     }
 
-    // If the negative is "less than" the positive, that means
-    // it came later in the glob array before we reversed them
-    return negativeMatch < positiveMatch;
+    return glob;
   }
-
-  var toWatch = positives.filter(exists);
 
   // We only do add our custom `ignored` if there are some negative globs
   // TODO: I'm not sure how to test this
   if (negatives.some(exists)) {
+    var normalizedPositives = positives.map(joinCwd);
+    var normalizedNegatives = negatives.map(joinCwd);
+    var shouldBeIgnored = function(path) {
+      var positiveMatch = anymatch(normalizedPositives, path, true);
+      var negativeMatch = anymatch(normalizedNegatives, path, true);
+      // If negativeMatch is -1, that means it was never negated
+      if (negativeMatch === -1) {
+        return false;
+      }
+
+      // If the negative is "less than" the positive, that means
+      // it came later in the glob array before we reversed them
+      return negativeMatch < positiveMatch;
+    };
+
     opt.ignored = [].concat(opt.ignored, shouldBeIgnored);
   }
   var watcher = chokidar.watch(toWatch, opt);
