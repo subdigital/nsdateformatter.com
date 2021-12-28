@@ -14,7 +14,7 @@ struct FormatterController: RouteCollection {
     }
 
     struct ViewData: Codable {
-        let formats: [DateFormatExample]
+        let examples: [DateFormatExample]
         let locales: [LocaleOption]
         let inputDate: String
         let exampleFormat: String
@@ -40,7 +40,7 @@ struct FormatterController: RouteCollection {
         let examples = examples(for: date, formatter: formatter)
 
         let viewData = ViewData(
-            formats: examples,
+            examples: examples,
             locales: buildLocales(),
             inputDate: inputDate,
             exampleFormat: examples.first?.format ?? "MMM yyyy",

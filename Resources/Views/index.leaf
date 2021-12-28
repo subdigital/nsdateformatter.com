@@ -1,9 +1,11 @@
 #extend("layout"):
   #export("body"):
-    <div class="mx-auto max-w-6xl p-10">
-      <div class="flex justify-between w-full">
-        <h1 class="text-3xl font-black text-white">
-          NSDateFormatter<span class="text-lg font-normal opacity-20">.com</span>
+    <div class="mx-auto max-w-6xl px-10 py-20">
+      <div class="flex items-center justify-between w-full">
+        <h1 class="text-3xl font-black text-white flex items-baseline">
+          <img alt="Swift logo" src="/swift-logo.png" width="40" class="mr-2 self-center">
+          <span class="mt-1">NSDateFormatter<span>
+          <span class="text-lg font-normal opacity-20 inline-block">.com</span>
         </h1>
       
         <h3 class="text-lg font-bold opacity-50">
@@ -11,13 +13,14 @@
         </h3>
       </div>
 
-      <div class="rounded-md shadow-lg bg-black my-20 p-8 bg-white/30 backdrop-blur-md">
+      <div class="rounded-md shadow-xl bg-black my-4 p-8 bg-white/30 backdrop-blur-md">
         <div class="flex justify-between gap-2">
           <div class="flex flex-col flex-grow">
             <div class="text-sm font-medium uppercase text-gray-80">
-              Date Input
+              Date Input 
             </div>
-            <input id="date" type="text" class="p-2 mt-1 mb-2 border-0 rounded-md bg-black/80" value="#(inputDate)">
+            <input id="date" type="datetime-local" class="p-2 mt-1 mb-2 border-0 rounded-md bg-black/80" value="#(inputDate)">
+            <span class="text-xs text-small-caps">(enter in ISO8601 format)</span>
           </div>
           
           <div class="flex flex-col flex-grow">
@@ -38,7 +41,7 @@
             </select>
           </div>
 
-          <div class="flex items-end">
+          <div class="flex items-end pb-4">
             <button class="bg-indigo-500 border-b border-b-indigo-700 rounded-md px-4 py-2 m-1 mb-2 hover:bg-indigo-700 transition">&rarr;</button>
           </div>
         </div>
@@ -50,6 +53,72 @@
           <div class="text-4xl font-medium">
             #(exampleResult)
           </div>
+        </div>
+      </div>
+
+      <div class="mt-10 my-6">
+        <div class="sm:hidden">
+          <label for="tabs" class="sr-only">Select a tab</label>
+          <!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
+          <select id="tabs-select" name="tabs" class="block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+            <option selected data-target=".examples">Examples</option>
+            <option data-target=".reference">Reference</option>
+            <option data-target=".best-practices">Best Practices</option>
+            <option data-target=".about">About this site</option>
+          </select>
+        </div>
+        <div class="hidden sm:block">
+          <nav
+              data-tab-on="text-white backdrop-blur-md bg-black/30"
+              data-tab-off="text-white/50 hover:text-white hover:bg-black/10 hover:backdrop-blur-md"
+              class="flex space-x-4" aria-label="Tabs">
+
+            <a href="#examples" data-target=".examples" class="transition text-white/50 hover:text-white hover:bg-black/10 hover:backdrop-blur-md px-3 py-2 font-medium text-sm rounded-md">
+              Examples
+            </a>
+
+            <a href="#" data-target=".reference" class="transition text-white/50 hover:text-white hover:bg-black/10 hover:backdrop-blur-md px-3 py-2 font-medium text-sm rounded-md">
+              Reference 
+            </a>
+
+            <a href="#" data-target=".best-practices" class="transition bg-black/30 backdrop-blur-md text-white px-3 py-2 font-medium text-sm rounded-md" aria-current="page">
+              Best Practices
+            </a>
+
+            <a href="#" data-target=".about" class="transition text-white/50 hover:hover:text-white hover:bg-black/10 hover:backdrop-blur-md px-3 py-2 font-medium text-sm rounded-md">
+              About this site
+            </a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="tab-container my-4">
+        <section class="examples">
+          #extend("_examples")
+        </section>
+
+        <section class="reference">
+          #extend("_reference")
+        </section>
+
+        <section class="best-practices">
+          #extend("_best-practices")
+        </section>
+
+        <section class="about">
+          #extend("_about")
+        </section>
+      </div>
+
+      <div class="my-12 text-center">
+        <p class="font-medium text-lg">
+          Want to see how to use DateFormatter in Swift?
+        </p>
+        <div class="bg-black/10 backdrop-blur-md sm:mx-8 lg:mx-20 my-4 p-4 rounded-lg shadow">
+          <p>Check out this <em>free</em> screencast:</p>
+          <a href="http://nsscreencast.com/episodes/99-parsing-and-formatting-dates" class="transition font-bold text-xl text-violet-400 hover:underline hover:text-violet-300">
+            Parsing and Formatting Dates
+          </a>
         </div>
       </div>
     </div>

@@ -6,9 +6,11 @@
 	<link rel="stylesheet" href="/site.css">
 </head>
 
-<body class="h-full">
+<body class="bg-contain min-h-screen">
 	<div class="min-h-full">
 		 #import("body")
 	</div>
+	<script src="/site.js"></script>
 </body>
 </html>
+
