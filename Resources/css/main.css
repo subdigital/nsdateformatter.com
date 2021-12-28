@@ -44,3 +44,9 @@ table.reference-table tr td {
   border-bottom: solid 1px rgba(255, 255, 255, 0.05);
 }
 
+footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
