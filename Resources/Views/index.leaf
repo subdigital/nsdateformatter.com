@@ -3,7 +3,7 @@
     <div class="mx-auto max-w-6xl px-10 py-20">
       <div class="flex items-center justify-between w-full">
         <h1 class="text-3xl font-black text-white flex items-baseline">
-          <img alt="Swift logo" src="/swift-logo.png" width="40" class="mr-2 self-center">
+          <img alt="Swift logo" src="/images/swift-logo.png" width="40" class="mr-2 self-center">
           <span class="mt-1">NSDateFormatter<span>
           <span class="text-lg font-normal opacity-20 inline-block">.com</span>
         </h1>
