@@ -1,0 +1,12 @@
+@tailwind base; 
+@tailwind components; 
+@tailwind utilities; 
+
+body {
+  background-size: cover;
+  font-family: ui-rounded, 'SF Pro Rounded', system-ui, sans-serif;
+  background: linear-gradient(90deg, #100030, #2f1042, #521a52, #76245e, #9b3267, #bf426c, #e0566f, #ff6e6e);
+  color: #fff;
+  font-size: 18px;
+}
+ 

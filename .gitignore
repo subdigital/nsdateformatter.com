@@ -7,3 +7,4 @@ xcuserdata
 *.swp
 *.orig
 .swiftpm
+node_modules

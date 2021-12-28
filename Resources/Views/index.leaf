@@ -1,0 +1,57 @@
+#extend("layout"):
+  #export("body"):
+    <div class="mx-auto max-w-6xl p-10">
+      <div class="flex justify-between w-full">
+        <h1 class="text-3xl font-black text-white">
+          NSDateFormatter<span class="text-lg font-normal opacity-20">.com</span>
+        </h1>
+      
+        <h3 class="text-lg font-bold opacity-50">
+          Easy Skeezy Date Formatting for Swift and Objective-C
+        </h3>
+      </div>
+
+      <div class="rounded-md shadow-lg bg-black my-20 p-8 bg-white/30 backdrop-blur-md">
+        <div class="flex justify-between gap-2">
+          <div class="flex flex-col flex-grow">
+            <div class="text-sm font-medium uppercase text-gray-80">
+              Date Input
+            </div>
+            <input id="date" type="text" class="p-2 mt-1 mb-2 border-0 rounded-md bg-black/80" value="#(inputDate)">
+          </div>
+          
+          <div class="flex flex-col flex-grow">
+            <div class="text-sm font-medium uppercase text-gray-80">
+              Format text
+            </div>
+            <input type="text" class="p-2 mt-1 mb-2 border-0 rounded-md bg-black/80" value="#(exampleFormat)">
+          </div>
+
+          <div class="flex flex-col flex-grow">
+            <div class="text-sm font-medium uppercase text-gray-80">
+              Locale
+            </div>
+            <select id="location" name="location" class="mt-1 bg-black/80 block w-full pl-3 pr-10 py-2.5 border-0 text-base focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+              #for(locale in locales):
+                <option #if(locale.isDefault): selected #endif value="#(locale.identifier)">#(locale.identifier)</option>
+              #endfor
+            </select>
+          </div>
+
+          <div class="flex items-end">
+            <button class="bg-indigo-500 border-b border-b-indigo-700 rounded-md px-4 py-2 m-1 mb-2 hover:bg-indigo-700 transition">&rarr;</button>
+          </div>
+        </div>
+        
+        <div class="mt-10">
+          <div class="border-b border-b-white/20 text-white text-sm font-medium mb-4">
+            Result
+          </div>
+          <div class="text-4xl font-medium">
+            #(exampleResult)
+          </div>
+        </div>
+      </div>
+    </div>
+  #endexport
+#endextend
