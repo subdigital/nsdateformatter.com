@@ -17,3 +17,30 @@ table.examples tr:hover td {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+table.reference-table tr > th {
+  background-color: rgba(0, 0, 0, 0.8);
+  background-blend-mode: overlay;
+}
+
+table.reference-table tr th {
+  text-align: left;
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 400;
+  padding: 8px 12px;
+}
+
+table.reference-table tr.separator {
+  text-transform: uppercase;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+table.reference-table tr.separator td {
+  color: rgba(255, 255, 255, 0.5);
+  padding: 8px 12px;
+}
+
+table.reference-table tr td {
+  padding: 10px 12px;
+  border-bottom: solid 1px rgba(255, 255, 255, 0.05);
+}
+

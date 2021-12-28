@@ -13,14 +13,14 @@
         </h3>
       </div>
 
-      <div class="rounded-md shadow-xl bg-black my-4 p-8 bg-white/30 backdrop-blur-md">
+      <div class="rounded-md shadow-xl bg-black my-4 p-8 bg-white/10 backdrop-blur-md">
         <div class="flex justify-between gap-2">
           <div class="flex flex-col flex-grow">
             <div class="text-sm font-medium uppercase text-gray-80">
               Date Input 
             </div>
             <input id="date" type="datetime-local" class="p-2 mt-1 mb-2 border-0 rounded-md bg-black/80" value="#(inputDate)">
-            <span class="text-xs text-small-caps">(enter in ISO8601 format)</span>
+            <span class="text-xs text-small-caps text-white/30">(enter in ISO8601 format)</span>
           </div>
           
           <div class="flex flex-col flex-grow">
@@ -73,19 +73,19 @@
               data-tab-off="text-white/50 hover:text-white hover:bg-black/10 hover:backdrop-blur-md"
               class="flex space-x-4" aria-label="Tabs">
 
-            <a href="#examples" data-target=".examples" class="transition text-white/50 hover:text-white hover:bg-black/10 hover:backdrop-blur-md px-3 py-2 font-medium text-sm rounded-md">
+            <a href="#examples" data-target=".examples" class="transition select-none text-white/50 hover:text-white hover:bg-black/10 hover:backdrop-blur-md px-3 py-2 font-medium text-sm rounded-md">
               Examples
             </a>
 
-            <a href="#" data-target=".reference" class="transition text-white/50 hover:text-white hover:bg-black/10 hover:backdrop-blur-md px-3 py-2 font-medium text-sm rounded-md">
+            <a href="#reference" data-target=".reference" class="transition select-none text-white/50 hover:text-white hover:bg-black/10 hover:backdrop-blur-md px-3 py-2 font-medium text-sm rounded-md">
               Reference 
             </a>
 
-            <a href="#" data-target=".best-practices" class="transition bg-black/30 backdrop-blur-md text-white px-3 py-2 font-medium text-sm rounded-md" aria-current="page">
+            <a href="#best-practices" data-target=".best-practices" class="transition select-none bg-black/30 backdrop-blur-md text-white px-3 py-2 font-medium text-sm rounded-md" aria-current="page">
               Best Practices
             </a>
 
-            <a href="#" data-target=".about" class="transition text-white/50 hover:hover:text-white hover:bg-black/10 hover:backdrop-blur-md px-3 py-2 font-medium text-sm rounded-md">
+            <a href="#about" data-target=".about" class="transition select-none text-white/50 hover:hover:text-white hover:bg-black/10 hover:backdrop-blur-md px-3 py-2 font-medium text-sm rounded-md">
               About this site
             </a>
           </nav>
