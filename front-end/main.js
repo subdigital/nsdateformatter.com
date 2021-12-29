@@ -1,20 +1,29 @@
-import './css/main.css';
+import "./css/main.css";
 
-import Tabs from './js/tabs.js';
+import Formatter from "./js/formatter.js";
+import Tabs from "./js/tabs.js";
 
 function setupTabs() {
-    let tabElements = document.querySelectorAll("nav a[data-target]")
-    let selectedTab;
+    const tabElements = document.querySelectorAll("nav a[data-target]");
+    let selectedTab = null;
     if (window.location.hash) {
-        selectedTab = "." + window.location.hash.substring(1)
+        selectedTab = `.${window.location.hash.substring(1)}`;
     }
-    new Tabs(tabElements, selectedTab);   
+
+    new Tabs(tabElements, selectedTab);
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    // setupForm()
-    setupTabs()
-})
+function setupFormatter() {
+    new Formatter();
+}
 
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+        setupFormatter();
+        setupTabs();
+    }
+);
 
 export default {};
+

@@ -3,7 +3,7 @@ import {show, hide} from './util.js';
 class Tabs {
     constructor(tabs, selectedTab = null) {
         this.allTabs = tabs;
-        if (!selectedTab) {
+        if (selectedTab) {
             this.selectedTab = selectedTab;
         } else {
             this.selectedTab = tabs[0].dataset.target;
@@ -12,9 +12,6 @@ class Tabs {
         let parentNav = tabs[0].closest("nav");
         this.tabOnClasses = parentNav.dataset.tabOn;
         this.tabOffClasses = parentNav.dataset.tabOff;
-
-        console.log("Tab on classes: ", this.tabOnClasses);
-        console.log("Tab off classes: ", this.tabOffClasses);
 
         this.allTabs.forEach((tab) => {
             tab.addEventListener('click', this.tabClick.bind(this));
