@@ -3,8 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>NSDateFormatter.com</title>
-	<link rel="stylesheet" href="/site.css">
-	<script src="/site.js"></script>
 </head>
 
 <body class="bg-contain min-h-screen">
@@ -14,6 +12,7 @@
 
 	#extend("_footer")
 
+  <script src="/bundle.js"><script>
   <script type='text/javascript'>
      var Countly = Countly || {};
      Countly.q = Countly.q || [];
@@ -29,7 +28,6 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cly, s);
      })();
   </script>
-
 </body>
 </html>
 

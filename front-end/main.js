@@ -1,9 +1,20 @@
-import App from './App.svelte'
+import './css/main.css';
 
-const app = new App({
-    target: document.body,
-    props: {}
-});
+import Tabs from './js/tabs.js';
 
-export default app;
+function setupTabs() {
+    let tabElements = document.querySelectorAll("nav a[data-target]")
+    let selectedTab;
+    if (window.location.hash) {
+        selectedTab = "." + window.location.hash.substring(1)
+    }
+    new Tabs(tabElements, selectedTab);   
+}
 
+document.addEventListener('DOMContentLoaded', function() {
+    // setupForm()
+    setupTabs()
+})
+
+
+export default {};
