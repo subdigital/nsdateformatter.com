@@ -17,9 +17,9 @@
         <div class="flex justify-between gap-2">
           <div class="flex flex-col flex-grow">
             <div class="text-sm font-medium uppercase text-gray-80">
-              Date Input: #(inputDate)
+              Date Input:
             </div>
-            <input name="date-input" type="datetime-local" class="p-2 mt-1 mb-2 border-0 rounded-md bg-black/80" value="#(inputDate)">
+            <input name="date-input" type="datetime-local" class="p-2 mt-1 h-10 mb-2 border-0 rounded-md bg-black/80" value="#(inputDate)">
             <span class="text-xs text-small-caps text-white/30">(enter in ISO8601 format)</span>
           </div>
           
@@ -27,14 +27,14 @@
             <div class="text-sm font-medium uppercase text-gray-80">
               Format text
             </div>
-            <input type="text" name="format" class="p-2 mt-1 mb-2 border-0 rounded-md bg-black/80" value="#(exampleFormat)">
+            <input type="text" name="format" class="p-2 mt-1 mb-2 h-10 border-0 rounded-md bg-black/80" value="#(exampleFormat)">
           </div>
 
           <div class="flex flex-col flex-grow">
             <div class="text-sm font-medium uppercase text-gray-80">
               Locale
             </div>
-            <select name="locale" class="mt-1 bg-black/80 block w-full pl-3 pr-10 py-2.5 border-0 text-base focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+            <select name="locale" class="mt-1 bg-black/80 block w-full h-10 pl-3 pr-10 py-2.5 border-0 text-base focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
               #for(locale in locales):
                 <option #if(locale.isDefault): selected #endif value="#(locale.identifier)">#(locale.identifier)</option>
               #endfor
@@ -42,7 +42,7 @@
           </div>
 
           <div class="flex items-end pb-4">
-            <button name="format-btn" class="bg-indigo-500 border-b border-b-indigo-700 rounded-md px-4 py-2 m-1 mb-2 hover:bg-indigo-700 transition">&rarr;</button>
+            <button name="format-btn" class="format-btn h-10 shadow hover:shadow-none bg-white/25 hover:bg-white/20 backdrop-blur-lg rounded-md px-4 py-2 m-1 mb-2 transition">&rarr;</button>
           </div>
         </div>
         
