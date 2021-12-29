@@ -28,13 +28,14 @@ struct FormatterController: RouteCollection {
 
     func boot(routes: RoutesBuilder) {
         routes.get(use: index)
+        routes.post("format", use: format)
     }
 
     func index(_ req: Request) async throws -> View {
         let date = Date()
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: defaultLocaleIdentifier)
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm"
         let inputDate = formatter.string(from: date)
 
         let examples = examples(for: date, formatter: formatter)
@@ -48,6 +49,34 @@ struct FormatterController: RouteCollection {
         )
 
         return try await req.view.render("index", viewData)
+    }
+
+    func format(_ req: Request) async throws -> String {
+        struct FormatRequest: Codable {
+            let date: String
+            let format: String
+            let timezoneOffset: Int
+            let locale: String
+        }
+        
+        let fr = try req.content.decode(FormatRequest.self)
+        req.logger.info("Format request: \(fr)")
+        
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyy-MM-dd'T'HH:mm"
+        formatter.timeZone = .init(secondsFromGMT: fr.timezoneOffset * 60 * 60)
+        
+        guard let dateInput = fr.date.removingPercentEncoding,
+              let sourceDate = formatter.date(from: dateInput) else {
+            throw Abort(.badRequest)
+        }
+        
+        formatter.locale = Locale(identifier: fr.locale)
+        formatter.dateFormat = fr.format
+        
+        let value = formatter.string(from: sourceDate)
+        return value
     }
 
     private let defaultLocaleIdentifier = "en_US_POSIX"

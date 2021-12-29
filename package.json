@@ -1,7 +1,16 @@
 {
+  "scripts": {
+    "build": "npx rollup -c",
+    "dev": "npx rollup -c -w",
+    "start": "sirv public --no-clear"
+  },
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^13.1.1",
     "@tailwindcss/forms": "^0.4.0",
     "@tailwindcss/typography": "^0.5.0",
+    "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-svelte": "^7.1.0",
+    "svelte": "^3.44.3",
     "tailwindcss": "^3.0.7"
   }
 }

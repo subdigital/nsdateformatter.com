@@ -21,7 +21,7 @@
       <div class="space-y-4">
         <div class="text-lg leading-6 font-medium space-y-1">
           <h3 class="mb-1">Ben Scheirman</h3>
-          <a href="https://twitter.com/subdigital" target="_blank" class="flex items-center -ml-3">
+          <a href="https://twitter.com/subdigital" target="_blank" class="inline-flex items-center -ml-3">
             <img alt="twitter" class="w-10 m-0 not-prose" src="/images/twitter.svg">
             <span>@subdigital</span>
           </a>
