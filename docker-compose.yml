@@ -19,6 +19,7 @@ x-shared_environment: &shared_environment
   
 services:
   app:
+    platform: linux/amd64
     image: nsdateformatter:latest
     build:
       context: .
