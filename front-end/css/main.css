@@ -45,7 +45,7 @@ table.reference-table tr td {
 }
 
 footer {
-  position: fixed;
+  @apply md:fixed;
   left: 0;
   right: 0;
   bottom: 0;

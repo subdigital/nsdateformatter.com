@@ -1,118 +1,120 @@
-<div class="bg-white rounded-lg p-8 prose lg:max-w-4xl">
-  <h2> The main fallacy to be aware of: <tt>dateFormat</tt> is not locale-aware </h2>
+<div class="bg-white rounded-lg p-8 lg:max-w-4xl">
+  <div class="prose mx-auto">
+    <h2> The main fallacy to be aware of: <tt>dateFormat</tt> is not locale-aware </h2>
 
-  <p>You should be aware that using a custom <tt>dateFormat</tt> comes with a risk of falling into some fallacies.</p>
-  <p>
-    Especially, you need to realize that the user can use different <tt>Locales</tt>,
-    and that date formats are different for different locales, regions and user settings.
-    For example one date formatted with a <tt>dateFormat</tt> that fits the US might become confusing for anyone in Europe.
-  </p>
+    <p>You should be aware that using a custom <tt>dateFormat</tt> comes with a risk of falling into some fallacies.</p>
+    <p>
+      Especially, you need to realize that the user can use different <tt>Locales</tt>,
+      and that date formats are different for different locales, regions and user settings.
+      For example one date formatted with a <tt>dateFormat</tt> that fits the US might become confusing for anyone in Europe.
+    </p>
 
-  <h2> The TL;DR </h2>
-  <ul>
-    <li>
-      Use <tt>dateStyle</tt> and <tt>timeStyle</tt> over <tt>dateFormat</tt> whenever you can.
-      Explain the date fallacies to your designer if you need to.
-    </li>
-    <li>
-      If you can't find a fitting <tt>dateStyle/timeStyle</tt> to format your UI dates, then at least use
+    <h2> The TL;DR </h2>
+    <ul>
+      <li>
+        Use <tt>dateStyle</tt> and <tt>timeStyle</tt> over <tt>dateFormat</tt> whenever you can.
+        Explain the date fallacies to your designer if you need to.
+      </li>
+      <li>
+        If you can't find a fitting <tt>dateStyle/timeStyle</tt> to format your UI dates, then at least use
+        <a href="https://developer.apple.com/documentation/foundation/dateformatter/1417087-setlocalizeddateformatfromtempla">
+          <tt>dateFormatter.setLocalizedDateFormatFromTemplate(…)</tt>
+        </a> to account for the user's locale.
+      </li>
+      <li>When parsing ISO8601 internet dates, always use <tt>ISO8601DateFormatter</tt></li>
+      <li>
+        If you can't because your API format doesn't fit ISO8601 and you still absolutely need to use a custom <tt>dateFormat</tt>,
+        then be sure to also set your <tt>dateFormatter.locale</tt> to the special value <tt>Locale(identifier: "en_US_POSIX")</tt>.
+      </li>
+    </ul>
+
+    <h2> Formatting user-visible dates for your UI </h2>
+
+    <p class="quote">
+      Apple already has <a href="https://developer.apple.com/documentation/foundation/dateformatter#1680045">a dedicated paragraph</a>
+      in their documentation about best practices for formatting a date to present to the user in a locale-aware way.
+      Below is just the TL;DR.
+    </p>
+
+    <h3> Using <tt>dateStyle</tt> and <tt>timeStyle</tt> </h3>
+
+    <p>
+      The main recommendation to follow is to <strong>prefer using <tt>dateStyle</tt> and <tt>timeStyle</tt>
+        over <tt>dateFormat</tt></strong>.
+    </p><p>
+      This is because those are locale-aware and account for a lot of edge cases
+      that you can otherwise miss when using a custom and hardcoded <tt>dateFormat</tt>.
+    </p>
+    <p>
+      I would even advise you to convince your designer against using a custom format and explain them that Date
+      and Time is <a href="https://yourcalendricalfallacyis.com/">a tricky subject with lots of edge cases</a>
+      and that it's generally not worth using a custom format that might fit their assumptions about the locale
+      and region they're used to use but might not fit a lot of other's.
+    </p>
+
+    <h3> Using DateFormatter's templating methods to auto-adjust for the user's Locale </h3>
+
+    <p>If you still need to use a custom <tt>dateFormat</tt>, be sure that you use
       <a href="https://developer.apple.com/documentation/foundation/dateformatter/1417087-setlocalizeddateformatfromtempla">
         <tt>dateFormatter.setLocalizedDateFormatFromTemplate(…)</tt>
-      </a> to account for the user's locale.
-    </li>
-    <li>When parsing ISO8601 internet dates, always use <tt>ISO8601DateFormatter</tt></li>
-    <li>
-      If you can't because your API format doesn't fit ISO8601 and you still absolutely need to use a custom <tt>dateFormat</tt>,
-      then be sure to also set your <tt>dateFormatter.locale</tt> to the special value <tt>Locale(identifier: "en_US_POSIX")</tt>.
-    </li>
-  </ul>
+      </a> or <a href="https://developer.apple.com/documentation/foundation/dateformatter/1408112-dateformat">
+        <tt>dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate:…options:…locale:…)</tt>
+      </a> instead of setting it to a hard-coded <tt>String</tt>.
+    </p>
 
-  <h2> Formatting user-visible dates for your UI </h2>
+    <h2> Working with ISO8601 dates and fixed formats for APIs </h2>
 
-  <p class="quote">
-    Apple already has <a href="https://developer.apple.com/documentation/foundation/dateformatter#1680045">a dedicated paragraph</a>
-    in their documentation about best practices for formatting a date to present to the user in a locale-aware way.
-    Below is just the TL;DR.
-  </p>
+    <p class="quote">
+      Apple Documentation <a href="https://developer.apple.com/documentation/foundation/dateformatter#2528261">
+        also has a dedicated section about those cases here</a>.
+    </p>
 
-  <h3> Using <tt>dateStyle</tt> and <tt>timeStyle</tt> </h3>
+    <h3> Using <tt>ISO8601DateFormatter</tt> </h3>
 
-  <p>
-    The main recommendation to follow is to <strong>prefer using <tt>dateStyle</tt> and <tt>timeStyle</tt>
-      over <tt>dateFormat</tt></strong>.
-  </p><p>
-    This is because those are locale-aware and account for a lot of edge cases
-    that you can otherwise miss when using a custom and hardcoded <tt>dateFormat</tt>.
-  </p>
-  <p>
-    I would even advise you to convince your designer against using a custom format and explain them that Date
-    and Time is <a href="https://yourcalendricalfallacyis.com/">a tricky subject with lots of edge cases</a>
-    and that it's generally not worth using a custom format that might fit their assumptions about the locale
-    and region they're used to use but might not fit a lot of other's.
-  </p>
+    <p>
+      If you need to parse <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO8601</a> dates, consider
+      using <tt>ISODateFormatter</tt> instead of a <tt>DateFormatter</tt> with a custom <tt>dateFormat</tt>.
+    </p>
+    <p>
+      This class is dedicated to handle the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO8601</a> standard
+      and all its possible variants and edge cases better than using a custom <tt>dateFormat</tt> would.
+    </p>
+    <p class="quote">
+      Tip: One of the little-known options of <tt>ISO8601DateFormatter</tt> is that it is also able to handle
+      fractional seconds if you set it up using <tt>formatter.formatOptions.insert(.withFractionalSeconds)</tt>.
+    </p>
 
-  <h3> Using DateFormatter's templating methods to auto-adjust for the user's Locale </h3>
+    <h3> Always use the en_US_POSIX locale for fixed formats </h3>
 
-  <p>If you still need to use a custom <tt>dateFormat</tt>, be sure that you use
-    <a href="https://developer.apple.com/documentation/foundation/dateformatter/1417087-setlocalizeddateformatfromtempla">
-      <tt>dateFormatter.setLocalizedDateFormatFromTemplate(…)</tt>
-    </a> or <a href="https://developer.apple.com/documentation/foundation/dateformatter/1408112-dateformat">
-      <tt>dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate:…options:…locale:…)</tt>
-    </a> instead of setting it to a hard-coded <tt>String</tt>.
-  </p>
+    <p>
+      In last resort, if you need to parse a date for an API that doesn’t fall into ISO8601 format,
+      but that also isn’t intended for UI (and should thus <em>not</em> depend on the user’s locale/region/language),
+      then that is the only case when you can use a fixed string as a value for <tt>dateFormatter.dateFormat</tt>.
+    </p>
+    <p>
+      <strong>BUT</strong> then <strong>ALWAYS also set</strong> your <tt>dateFormatter.locale</tt> to
+      <tt>Locale(identifier: "en_US_POSIX")</tt> on your <tt>DateFormatter</tt>.
+    </p>
+    <p class="quote">
+      <tt>en_US_POSIX</tt> is a special locale that guarantees that the formatting and parsing won’t depend on
+      the phone’s locale, and is designed exactly for parsing those “internet dates with fixed format”.
+    </p>
 
-  <h2> Working with ISO8601 dates and fixed formats for APIs </h2>
+    <p>
+      If you don't force the locale to <tt>en_US_POSIX</tt>, there are risks that your code might seem to work in some
+      regions (like the US), but will fail to parse your API responses if the user has its phone set in another region
+      (e.g. <tt>en_GB</tt>, <tt>es_ES</tt> or <tt>fr_FR</tt>), where date formatting is different, or use 12-hour time
+      and not 24-hour time.
+    </p>
+    <p>
+      You can test this kind of edge case on device by setting your phone settings to use <tt>es_ES</tt> for example and set
+      it to use 12-hour with am/pm, and try to parse a date like <tt>2020-01-15T22:00:00Z</tt>.
+    </p>
+    <p>
+      For more information about those commonly overlooked cases, you can read
+      <a href="https://developer.apple.com/library/archive/qa/qa1480/_index.html">Apple's TN1480</a>.
+    </p>
 
-  <p class="quote">
-    Apple Documentation <a href="https://developer.apple.com/documentation/foundation/dateformatter#2528261">
-      also has a dedicated section about those cases here</a>.
-  </p>
-
-  <h3> Using <tt>ISO8601DateFormatter</tt> </h3>
-
-  <p>
-    If you need to parse <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO8601</a> dates, consider
-    using <tt>ISODateFormatter</tt> instead of a <tt>DateFormatter</tt> with a custom <tt>dateFormat</tt>.
-  </p>
-  <p>
-    This class is dedicated to handle the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO8601</a> standard
-    and all its possible variants and edge cases better than using a custom <tt>dateFormat</tt> would.
-  </p>
-  <p class="quote">
-    Tip: One of the little-known options of <tt>ISO8601DateFormatter</tt> is that it is also able to handle
-    fractional seconds if you set it up using <tt>formatter.formatOptions.insert(.withFractionalSeconds)</tt>.
-  </p>
-
-  <h3> Always use the en_US_POSIX locale for fixed formats </h3>
-
-  <p>
-    In last resort, if you need to parse a date for an API that doesn’t fall into ISO8601 format,
-    but that also isn’t intended for UI (and should thus <em>not</em> depend on the user’s locale/region/language),
-    then that is the only case when you can use a fixed string as a value for <tt>dateFormatter.dateFormat</tt>.
-  </p>
-  <p>
-    <strong>BUT</strong> then <strong>ALWAYS also set</strong> your <tt>dateFormatter.locale</tt> to
-    <tt>Locale(identifier: "en_US_POSIX")</tt> on your <tt>DateFormatter</tt>.
-  </p>
-  <p class="quote">
-    <tt>en_US_POSIX</tt> is a special locale that guarantees that the formatting and parsing won’t depend on
-    the phone’s locale, and is designed exactly for parsing those “internet dates with fixed format”.
-  </p>
-
-  <p>
-    If you don't force the locale to <tt>en_US_POSIX</tt>, there are risks that your code might seem to work in some
-    regions (like the US), but will fail to parse your API responses if the user has its phone set in another region
-    (e.g. <tt>en_GB</tt>, <tt>es_ES</tt> or <tt>fr_FR</tt>), where date formatting is different, or use 12-hour time
-    and not 24-hour time.
-  </p>
-  <p>
-    You can test this kind of edge case on device by setting your phone settings to use <tt>es_ES</tt> for example and set
-    it to use 12-hour with am/pm, and try to parse a date like <tt>2020-01-15T22:00:00Z</tt>.
-  </p>
-  <p>
-    For more information about those commonly overlooked cases, you can read
-    <a href="https://developer.apple.com/library/archive/qa/qa1480/_index.html">Apple's TN1480</a>.
-  </p>
-
-  <p class="text-sm italic">This section was contributed by Olivier Halligon</p>
+    <p class="text-sm italic">This section was contributed by Olivier Halligon</p>
+  </div>
 </div>
