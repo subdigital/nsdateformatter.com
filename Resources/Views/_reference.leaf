@@ -91,8 +91,8 @@
           </tr>
           <tr>
             <td class="font-mono">F</td>
-            <td>3rd Tuesday in December</td>
-            <td class="text-sm hidden md:block">The day of week in the month</td>
+            <td>2</td>
+            <td class="text-sm hidden md:table-cell">(numeric) The day of week in the month.</td>
           </tr>
           <tr>
             <td class="font-mono">E</td>
