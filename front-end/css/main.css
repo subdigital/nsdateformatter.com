@@ -39,9 +39,12 @@ table.reference-table tr.separator td {
   padding: 8px 12px;
 }
 
-table.reference-table tr td {
-  padding: 10px 12px;
+table.reference-table tr {
   border-bottom: solid 1px rgba(255, 255, 255, 0.05);
+}
+
+table.reference-table tr td {
+    padding: 10px 12px;
 }
 
 footer {
@@ -50,3 +53,4 @@ footer {
   right: 0;
   bottom: 0;
 }
+
