@@ -55,26 +55,26 @@ struct FormatterController: RouteCollection {
         struct FormatRequest: Codable {
             let date: String
             let format: String
-            let timezoneOffset: Int
+            let timezoneOffset: Float
             let locale: String
         }
-        
+
         let fr = try req.content.decode(FormatRequest.self)
         req.logger.info("Format request: \(fr)")
-        
-        
+
+
         let formatter = DateFormatter()
         formatter.dateFormat = "yyy-MM-dd'T'HH:mm"
-        formatter.timeZone = .init(secondsFromGMT: fr.timezoneOffset * 60 * 60)
-        
+        formatter.timeZone = .init(secondsFromGMT: Int(fr.timezoneOffset * 60 * 60))
+
         guard let dateInput = fr.date.removingPercentEncoding,
               let sourceDate = formatter.date(from: dateInput) else {
             throw Abort(.badRequest)
         }
-        
+
         formatter.locale = Locale(identifier: fr.locale)
         formatter.dateFormat = fr.format
-        
+
         let value = formatter.string(from: sourceDate)
         return value
     }
