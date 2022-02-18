@@ -4,7 +4,7 @@
       <strong>nsdateformatter.com</strong> is written with <a href="http://swift.org">Swift</a> 5.5, originally as
       a means to learn open-source Swift, the Swift Package Manager, and deploying
       to Linux. It uses the <a href="https://vapor.codes" target="_blank">Vapor</a> web application
-      framework and deployed is to <a href="https://heroku.com" target="_blank">Heroku</a>.
+      framework and is deployed to <a href="https://heroku.com" target="_blank">Heroku</a>.
     </p>
 
     <p>
