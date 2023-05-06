@@ -13,7 +13,7 @@
 
 	#extend("_footer")
 
-  <script src="/bundle.js"><script>
+  <script src="/bundle.js"></script>
   <script type='text/javascript'>
      var Countly = Countly || {};
      Countly.q = Countly.q || [];
