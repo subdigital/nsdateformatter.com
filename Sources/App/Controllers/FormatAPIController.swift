@@ -3,23 +3,25 @@ import Vapor
 
 class FormatAPIController: RouteCollection {
     
+    // These identifiers match the CLDR calendar identifiers
+    // https://github.com/unicode-org/icu/blob/main/icu4c/source/i18n/ucal.cpp#L694
     private let calendars = [
-        "gregorian": Calendar(identifier: .gregorian),
-        "buddhist": Calendar(identifier: .buddhist),
-        "chinese": Calendar(identifier: .chinese),
-        "coptic": Calendar(identifier: .coptic),
-        "ethiopicAmeteMihret": Calendar(identifier: .ethiopicAmeteMihret),
-        "ethiopicAmeteAlem": Calendar(identifier: .ethiopicAmeteAlem),
-        "hebrew": Calendar(identifier: .hebrew),
-        "iso8601": Calendar(identifier: .iso8601),
-        "indian": Calendar(identifier: .indian),
-        "islamic": Calendar(identifier: .islamic),
-        "islamicCivil": Calendar(identifier: .islamicCivil),
-        "japanese": Calendar(identifier: .japanese),
-        "persian": Calendar(identifier: .persian),
-        "republicOfChina": Calendar(identifier: .republicOfChina),
-        "islamicTabular": Calendar(identifier: .islamicTabular),
-        "islamicUmmAlQura": Calendar(identifier: .islamicUmmAlQura)
+        "gregorian": Calendar.Identifier.gregorian,
+        "japanese": .japanese,
+        "buddhist": .buddhist,
+        "roc": .republicOfChina,
+        "persian": .persian,
+        "islamic-civil": .islamicCivil,
+        "islamic": .islamic,
+        "hebrew": .hebrew,
+        "chinese": .chinese,
+        "indian": .indian,
+        "coptic": .coptic,
+        "ethiopic": .ethiopicAmeteMihret,
+        "ethiopic-amete-alem": .ethiopicAmeteAlem,
+        "iso8601": .iso8601,
+        "islamic-umalqura": .islamicUmmAlQura,
+        "islamic-tbla": .islamicTabular,
     ]
     
     func boot(routes: RoutesBuilder) throws {
@@ -73,10 +75,11 @@ class FormatAPIController: RouteCollection {
         }
         
         let formatted = formatter.string(from: date)
+        let calendarIDName = calendars.first(where: { $0.value == calendar.identifier })?.key ?? "gregorian"
         
         return FormatResponse(
             id: request.id,
-            calendar: "\(calendar.identifier)",
+            calendar: calendarIDName,
             timeZone: timeZone.identifier,
             locale: locale.identifier,
             timestamp: date.timeIntervalSince1970,
@@ -100,10 +103,10 @@ class FormatAPIController: RouteCollection {
     private func resolveCalendar(matching identifier: String?, fallback: Locale) throws -> Calendar {
         if let identifier {
             let loweredCalID = identifier.lowercased()
-            guard let c = self.calendars.first(where: { $0.key.lowercased() == loweredCalID })?.value else {
+            guard let calendarIdentifier = self.calendars.first(where: { $0.key.lowercased() == loweredCalID })?.value else {
                 throw Abort(.badRequest, reason: "Unknown calendar: '\(identifier)'")
             }
-            return c
+            return Calendar(identifier: calendarIdentifier)
         } else {
             return fallback.calendar
         }
