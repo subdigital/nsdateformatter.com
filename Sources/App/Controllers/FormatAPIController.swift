@@ -8,18 +8,18 @@ class FormatAPIController: RouteCollection {
         "buddhist": Calendar(identifier: .buddhist),
         "chinese": Calendar(identifier: .chinese),
         "coptic": Calendar(identifier: .coptic),
-        "ethiopicAmeteMihret": Calendar(identifier: .ethiopicAmeteMihret),
-        "ethiopicAmeteAlem": Calendar(identifier: .ethiopicAmeteAlem),
+        "ethiopicametemihret": Calendar(identifier: .ethiopicAmeteMihret),
+        "ethiopicametealem": Calendar(identifier: .ethiopicAmeteAlem),
         "hebrew": Calendar(identifier: .hebrew),
         "iso8601": Calendar(identifier: .iso8601),
         "indian": Calendar(identifier: .indian),
         "islamic": Calendar(identifier: .islamic),
-        "islamicCivil": Calendar(identifier: .islamicCivil),
+        "islamiccivil": Calendar(identifier: .islamicCivil),
         "japanese": Calendar(identifier: .japanese),
         "persian": Calendar(identifier: .persian),
-        "republicOfChina": Calendar(identifier: .republicOfChina),
-        "islamicTabular": Calendar(identifier: .islamicTabular),
-        "islamicUmmAlQura": Calendar(identifier: .islamicUmmAlQura)
+        "republicofchina": Calendar(identifier: .republicOfChina),
+        "islamictabular": Calendar(identifier: .islamicTabular),
+        "islamicummalqura": Calendar(identifier: .islamicUmmAlQura)
     ]
     
     func boot(routes: RoutesBuilder) throws {
@@ -28,10 +28,10 @@ class FormatAPIController: RouteCollection {
     }
     
     func infoJSON(_ req: Request) async throws -> InfoResponse {
-        return InfoResponse(calendars: self.calendars.keys.sorted(by: <),
-                            locales: Locale.availableIdentifiers.sorted(by: <),
-                            timeZones: TimeZone.knownTimeZoneIdentifiers.sorted(by: <),
-                            timeZoneDataVersion: TimeZone.timeZoneDataVersion)
+        InfoResponse(calendars: calendars.keys.sorted(by: <),
+                     locales: Locale.availableIdentifiers.sorted(by: <),
+                     timeZones: TimeZone.knownTimeZoneIdentifiers.sorted(by: <),
+                     timeZoneDataVersion: TimeZone.timeZoneDataVersion)
     }
     
     func formatJSON(_ req: Request) async throws -> [FormatResponse] {
@@ -40,49 +40,9 @@ class FormatAPIController: RouteCollection {
     }
     
     private func processRequest(_ request: FormatRequest) throws -> FormatResponse {
-        let locale: Locale
-        let calendar: Calendar
-        let calendarID: String
-        let timeZone: TimeZone
-        
-        if let localeID = request.locale {
-            let loweredLocaledID = localeID.lowercased()
-            guard let actualLocaleID = Locale.availableIdentifiers.first(where: { $0.lowercased() == loweredLocaledID }) else {
-                throw Abort(.badRequest, reason: "Unknown locale: '\(localeID)'")
-            }
-            locale = Locale(identifier: actualLocaleID)
-        } else {
-            locale = Locale(identifier: "en_US_POSIX")
-        }
-        
-        if let tzID = request.timeZone {
-            let loweredTZID = tzID.lowercased()
-            guard let actualTZID = TimeZone.knownTimeZoneIdentifiers.first(where: { $0.lowercased() == loweredTZID }) else {
-                throw Abort(.badRequest, reason: "Unknown time zone: '\(tzID)'")
-            }
-            timeZone = TimeZone(identifier: actualTZID)!
-        } else {
-            if #available(macOS 13, *) {
-                if let tz = locale.timeZone {
-                    timeZone = tz
-                } else {
-                    timeZone = TimeZone(secondsFromGMT: 0)!
-                }
-            } else {
-                timeZone = TimeZone(secondsFromGMT: 0)!
-            }
-        }
-        
-        if let calID = request.calendar {
-            guard let c = self.calendars[calID] else {
-                throw Abort(.badRequest, reason: "Unknown calendar: '\(calID)'")
-            }
-            calendar = c
-            calendarID = calID
-        } else {
-            calendar = locale.calendar
-            calendarID = "\(calendar.identifier)"
-        }
+        let locale = try resolveLocale(matching: request.locale)
+        let calendar = try resolveCalendar(matching: request.calendar, fallback: locale)
+        let timeZone = try resolveTimeZone(matching: request.timeZone, fallback: locale)
         
         let formatter = DateFormatter()
         formatter.calendar = calendar
@@ -114,22 +74,131 @@ class FormatAPIController: RouteCollection {
         
         let formatted = formatter.string(from: date)
         
-        return FormatResponse(id: request.id,
-                              calendar: calendarID,
-                              timeZone: timeZone.identifier,
-                              locale: locale.identifier,
-                              timestamp: date.timeIntervalSince1970,
-                              format: formatter.dateFormat,
-                              value: formatted)
+        return FormatResponse(
+            id: request.id,
+            calendar: "\(calendar.identifier)",
+            timeZone: timeZone.identifier,
+            locale: locale.identifier,
+            timestamp: date.timeIntervalSince1970,
+            format: formatter.dateFormat,
+            value: formatted
+        )
+    }
+    
+    private func resolveLocale(matching identifier: String?) throws -> Locale {
+        if let identifier {
+            let loweredLocaledID = identifier.lowercased()
+            guard let actualLocaleID = Locale.availableIdentifiers.first(where: { $0.lowercased() == loweredLocaledID }) else {
+                throw Abort(.badRequest, reason: "Unknown locale: '\(identifier)'")
+            }
+            return Locale(identifier: actualLocaleID)
+        } else {
+            return Locale(identifier: "en_US_POSIX")
+        }
+    }
+    
+    private func resolveCalendar(matching identifier: String?, fallback: Locale) throws -> Calendar {
+        if let identifier {
+            guard let c = self.calendars[identifier.lowercased()] else {
+                throw Abort(.badRequest, reason: "Unknown calendar: '\(identifier)'")
+            }
+            return c
+        } else {
+            return fallback.calendar
+        }
+    }
+    
+    private func resolveTimeZone(matching identifier: String?, fallback: Locale) throws -> TimeZone {
+        if let identifier {
+            let loweredTZID = identifier.lowercased()
+            guard let actualTZID = TimeZone.knownTimeZoneIdentifiers.first(where: { $0.lowercased() == loweredTZID }) else {
+                throw Abort(.badRequest, reason: "Unknown time zone: '\(identifier)'")
+            }
+            return TimeZone(identifier: actualTZID)!
+        } else {
+            if #available(macOS 13, *) {
+                return fallback.timeZone ?? TimeZone(secondsFromGMT: 0)!
+            } else {
+                return TimeZone(secondsFromGMT: 0)!
+            }
+        }
     }
 }
 
+/// A request to format a timestamp
+///
+/// Valid JSON requests can look like:
+///
+/// ```json
+/// // format the current date in the default locale, calendar, and time zone
+/// { 
+///   "format": { "date": "full" }
+/// }
+///
+/// // format a specific point in time according to a specific locale,
+/// // calendar, and time zone using a template format
+/// {
+///  "locale": "en_US",
+///  "calendar": "japanese",
+///  "timeZone": "africa/addis_ababa",
+///  "timestamp": 1234567890.987,
+///  "format": { "template": "yMMMdHHmmss" }
+/// }
+///
+/// // format a specific point in time using the default locale and calendar,
+/// // but in the New York time zone and using an ISO 8601-like format.
+/// {
+///  "id": "an-id-from-my-app",
+///  "timeZone": "America/New_York",
+///  "timestamp": 1708705211,
+///  "format": { "raw": "y-MM-dd'T'HH:mm:ss.SSSX" }
+/// }
+/// ```
 struct FormatRequest: Content {
+    
+    /// A client-provided identifier for the request.
+    ///
+    /// This value is returned as-is in the ``FormatResponse``. The purpose of this identifier is to help clients
+    /// associate the responses with their requests. For example, this id might correspond to the `id="…"` value
+    /// of an HTML element, or some other view identifier.
     let id: String?
-    let calendar: String?
-    let timeZone: String?
+    
+    /// The identifier of the locale to use for the request (case insensitive)
+    ///
+    /// Valid values can be retrieved from the `/info.json` endpoint and are strings like `"en_US"`, `"se_NO"`, etc.
+    /// If this value is omitted, then the `en_US_POSIX` locale is used.
     let locale: String?
+    
+    /// The identifier of the calendar to use for the request (case insensitive)
+    ///
+    /// Valid values can be retrieved from the `/info.json` endpoint and are strings like `"gregorian"`, `"japanese"`, etc.
+    /// If this value is omitted, then the calendar of the `locale` is used. If the locale does not specify a calendar, then `"gregorian"` is used.
+    let calendar: String?
+    
+    /// The identifier of the time zone to use for the request (case insensitive)
+    ///
+    /// These identifiers are ones such as `"America/Los_Angeles"` or `"Europe/Stockholm"`. There is no support for passing
+    /// a time zone *offset*, since such time zones result in "fixed" time zones with no notion of Daylight Saving Time. By using the time zone
+    /// identifier, formatting requests account for proper DST shifts or time-zone-specific variations, such as `Pacific/Apia`'s missing 30 Dec 2011.
+    ///
+    /// If this value is omitted, then the locale's time zone is used, if it has one. If the locale does not have one, then GMT is used.
+    let timeZone: String?
+    
+    /// The Unix timestamp to format into a string
+    ///
+    /// This value (of seconds since the 1970 Unix epoch) is used as the point in time for formatting. It can be omitted, in which case "now" is used.
     let timestamp: Double?
+    
+    /// The format of the "rendered" timestamp
+    ///
+    /// This is the only required parameter of a `FormatRequest`, since all others may be omitted to assume default values.
+    /// Valid values for this parameter are things like:
+    /// - `.date(.full)`: render the localized date portion of the timestamp using complete era, year, month, and day information
+    /// - `.time(.short)`: render only the time of day portion of the timestamp using a localized abbreviated format.
+    /// - `.dateAndTime(.medium, .medium)`: render the date and time of day information in the timestamp in a localized format
+    /// - `.template("jmm")`: render the timestamp using the provided date format *template*. This value is localized by `DateFormatter`
+    ///   using the resolved locale.
+    /// - `.raw("HH:mm")`: render the timestamp using the provided date format.
     let format: Format
     
     enum Style: String, Codable {
