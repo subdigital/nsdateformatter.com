@@ -8,18 +8,18 @@ class FormatAPIController: RouteCollection {
         "buddhist": Calendar(identifier: .buddhist),
         "chinese": Calendar(identifier: .chinese),
         "coptic": Calendar(identifier: .coptic),
-        "ethiopicametemihret": Calendar(identifier: .ethiopicAmeteMihret),
-        "ethiopicametealem": Calendar(identifier: .ethiopicAmeteAlem),
+        "ethiopicAmeteMihret": Calendar(identifier: .ethiopicAmeteMihret),
+        "ethiopicAmeteAlem": Calendar(identifier: .ethiopicAmeteAlem),
         "hebrew": Calendar(identifier: .hebrew),
         "iso8601": Calendar(identifier: .iso8601),
         "indian": Calendar(identifier: .indian),
         "islamic": Calendar(identifier: .islamic),
-        "islamiccivil": Calendar(identifier: .islamicCivil),
+        "islamicCivil": Calendar(identifier: .islamicCivil),
         "japanese": Calendar(identifier: .japanese),
         "persian": Calendar(identifier: .persian),
-        "republicofchina": Calendar(identifier: .republicOfChina),
-        "islamictabular": Calendar(identifier: .islamicTabular),
-        "islamicummalqura": Calendar(identifier: .islamicUmmAlQura)
+        "republicOfChina": Calendar(identifier: .republicOfChina),
+        "islamicTabular": Calendar(identifier: .islamicTabular),
+        "islamicUmmAlQura": Calendar(identifier: .islamicUmmAlQura)
     ]
     
     func boot(routes: RoutesBuilder) throws {
@@ -99,7 +99,8 @@ class FormatAPIController: RouteCollection {
     
     private func resolveCalendar(matching identifier: String?, fallback: Locale) throws -> Calendar {
         if let identifier {
-            guard let c = self.calendars[identifier.lowercased()] else {
+            let loweredCalID = identifier.lowercased()
+            guard let c = self.calendars.first(where: { $0.key.lowercased() == loweredCalID })?.value else {
                 throw Abort(.badRequest, reason: "Unknown calendar: '\(identifier)'")
             }
             return c
