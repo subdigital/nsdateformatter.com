@@ -23,7 +23,15 @@ class FormatAPIController: RouteCollection {
     ]
     
     func boot(routes: RoutesBuilder) throws {
+        routes.get("info.json", use: infoJSON)
         routes.post("format.json", use: formatJSON)
+    }
+    
+    func infoJSON(_ req: Request) async throws -> InfoResponse {
+        return InfoResponse(calendars: self.calendars.keys.sorted(by: <),
+                            locales: Locale.availableIdentifiers.sorted(by: <),
+                            timeZones: TimeZone.knownTimeZoneIdentifiers.sorted(by: <),
+                            timeZoneDataVersion: TimeZone.timeZoneDataVersion)
     }
     
     func formatJSON(_ req: Request) async throws -> [FormatResponse] {
@@ -204,4 +212,11 @@ struct FormatResponse: Content {
     let timestamp: Double
     let format: String
     let value: String
+}
+
+struct InfoResponse: Content {
+    let calendars: Array<String>
+    let locales: Array<String>
+    let timeZones: Array<String>
+    let timeZoneDataVersion: String
 }
