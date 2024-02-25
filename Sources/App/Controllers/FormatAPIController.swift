@@ -134,30 +134,32 @@ class FormatAPIController: RouteCollection {
 /// Valid JSON requests can look like:
 ///
 /// ```json
-/// // format the current date in the default locale, calendar, and time zone
-/// { 
-///   "format": { "date": "full" }
-/// }
-///
-/// // format a specific point in time according to a specific locale,
-/// // calendar, and time zone using a template format
-/// {
-///  "locale": "en_US",
-///  "calendar": "japanese",
-///  "timeZone": "africa/addis_ababa",
-///  "timestamp": 1234567890.987,
-///  "format": { "template": "yMMMdHHmmss" }
-/// }
-///
-/// // format a specific point in time using the default locale and calendar,
-/// // but in the New York time zone and using an ISO 8601-like format.
-/// {
-///  "id": "an-id-from-my-app",
-///  "timeZone": "America/New_York",
-///  "timestamp": 1708705211,
-///  "format": { "raw": "y-MM-dd'T'HH:mm:ss.SSSX" }
-/// }
+/// [
+///   {
+///     "format": { "date": "full" }
+///   },
+///   {
+///     "locale": "en_US",
+///     "calendar": "japanese",
+///     "timeZone": "africa/addis_ababa",
+///     "timestamp": 1234567890.987,
+///     "format": { "template": "yMMMdHHmmss" }
+///   },
+///   {
+///     "id": "an-id-from-my-app",
+///     "timeZone": "America/New_York",
+///     "timestamp": 1708705211,
+///     "format": { "raw": "y-MM-dd'T'HH:mm:ss.SSSX" }
+///   }
+/// ]
 /// ```
+///
+/// This example requests three different formattings:
+/// 1. Format the current date in the default, locale, calendar, and time zone
+/// 2. Format a specific point in time according to the specified locale, calendar, and time zone using a template format
+/// 3. Format a specific point in time using the default locale and calendar, in the New York time zone using an ISO 8601-like format.
+///
+/// The response is an array of ``FormatResponse`` values, in the same order as the corresponding requests.
 struct FormatRequest: Content {
     
     /// A client-provided identifier for the request.
