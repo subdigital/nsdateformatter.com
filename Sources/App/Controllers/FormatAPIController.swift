@@ -25,8 +25,9 @@ class FormatAPIController: RouteCollection {
     ]
     
     func boot(routes: RoutesBuilder) throws {
-        routes.get("info.json", use: infoJSON)
-        routes.post("format.json", use: formatJSON)
+        let api = routes.grouped("api")
+        api.get("info", use: infoJSON)
+        api.post("format", use: formatJSON)
     }
     
     func infoJSON(_ req: Request) async throws -> InfoResponse {

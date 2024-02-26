@@ -8,14 +8,10 @@ struct FormatterController: RouteCollection {
         let value: String
     }
 
-    struct LocaleOption: Codable {
-        let identifier: String
-        let isDefault: Bool
-    }
-
-    struct ViewData: Codable {
+    struct ViewData: Content {
         let examples: [DateFormatExample]
-        let locales: [LocaleOption]
+        let locales: [String]
+        let defaultLocale: String
         let inputDate: String
         let exampleFormat: String
         let exampleResult: String
@@ -27,11 +23,11 @@ struct FormatterController: RouteCollection {
     }
 
     func boot(routes: RoutesBuilder) {
-        routes.get(use: index)
+        routes.get("viewData", use: index)
         routes.post("format", use: format)
     }
 
-    func index(_ req: Request) async throws -> View {
+    func index(_ req: Request) async throws -> ViewData {
         let date = Date()
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: defaultLocaleIdentifier)
@@ -43,12 +39,13 @@ struct FormatterController: RouteCollection {
         let viewData = ViewData(
             examples: examples,
             locales: buildLocales(),
+            defaultLocale: defaultLocaleIdentifier,
             inputDate: inputDate,
             exampleFormat: examples.first?.format ?? "MMM yyyy",
             exampleResult: examples.first?.value ?? ""
         )
 
-        return try await req.view.render("index", viewData)
+        return viewData
     }
 
     func format(_ req: Request) async throws -> String {
@@ -81,10 +78,8 @@ struct FormatterController: RouteCollection {
 
     private let defaultLocaleIdentifier = "en_US_POSIX"
 
-    private func buildLocales() -> [LocaleOption] {
-        Locale.availableIdentifiers.sorted().map { id in 
-            LocaleOption(identifier: id, isDefault: id == defaultLocaleIdentifier)
-        }
+    private func buildLocales() -> [String] {
+        Locale.availableIdentifiers.sorted() 
     }
 
     private func examples(for date: Date, formatter: DateFormatter) -> [DateFormatExample] {

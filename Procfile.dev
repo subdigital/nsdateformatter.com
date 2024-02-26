@@ -1,0 +1,2 @@
+web: swift run
+frontend: npm run dev

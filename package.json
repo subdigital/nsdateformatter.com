@@ -1,19 +1,19 @@
 {
+  "name": "nsdateformatter.com",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "build": "npx rollup -c",
-    "dev": "npx rollup -c -w",
-    "vapor": "swift build && swift run"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "^13.1.1",
-    "@tailwindcss/forms": "^0.4.0",
-    "@tailwindcss/typography": "^0.5.0",
-    "babel-eslint": "^10.1.0",
-    "postcss-load-config": "^3.1.0",
-    "rollup-plugin-livereload": "^2.0.5",
-    "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-svelte": "^7.1.0",
-    "svelte": "^3.44.3",
-    "tailwindcss": "^3.0.7"
+    "@sveltejs/vite-plugin-svelte": "^3.0.2",
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.35",
+    "svelte": "^4.2.11",
+    "tailwindcss": "^3.4.1",
+    "vite": "^5.1.4"
   }
 }
