@@ -1,0 +1,219 @@
+<script>
+  export let viewData;
+</script>
+
+<div class="flex flex-col">
+  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="shadow bg-black/20 backdrop-blur-md overflow-hidden sm:rounded-lg">
+        <p class="my-4 mx-8 text-xs">
+          The following table’s sample column are mostly based on the time <code>December 14th, 2008 4:35 PM UTC</code>.
+        </p>
+        <table class="reference-table min-w-full border-0">
+          <tr>
+            <th>Characters</th>
+            <th>Example</th>
+            <th class="hidden md:table-cell">Description</th>
+          </tr>
+          <tr class="separator">
+            <td colspan="3">Year</td>
+          </tr>
+          <tr>
+            <td class="font-mono">y</td>
+            <td>2008</td>
+            <td class="text-sm hidden md:table-cell">Year, no padding</td>
+          </tr>
+          <tr>
+            <td class="font-mono">yy</td>
+            <td>08</td>
+            <td class="text-sm hidden md:table-cell">Year, two digits (padding with a zero if necessary)</td>
+          </tr>
+          <tr>
+            <td class="font-mono">yyyy</td>
+            <td>2008</td>
+            <td class="text-sm hidden md:table-cell">Year, minimum of four digits (padding with zeros if necessary)</td>
+          </tr>
+          <tr class="separator">
+            <td colspan="3">Quarter</td>
+          </tr>
+          <tr>
+            <td class="font-mono">Q</td>
+            <td>4</td>
+            <td class="text-sm hidden md:table-cell">The quarter of the year. Use QQ if you want zero padding.</td>
+          </tr>
+          <tr>
+            <td class="font-mono">QQQ</td>
+            <td>Q4</td>
+            <td class="text-sm hidden md:table-cell">Quarter including "Q"</td>
+          </tr>
+          <tr>
+            <td class="font-mono">QQQQ</td>
+            <td>4th quarter</td>
+            <td class="text-sm hidden md:table-cell">Quarter spelled out</td>
+          </tr>
+          <tr class="separator">
+            <td colspan="3">Month</td>
+          </tr>
+          <tr>
+            <td class="font-mono">M</td>
+            <td>12</td>
+            <td class="text-sm hidden md:table-cell">The numeric month of the year.  A single M will use '1' for January.</td>
+          </tr>
+          <tr>
+            <td class="font-mono">MM</td>
+            <td>12</td>
+            <td class="text-sm hidden md:table-cell">The numeric month of the year.  A double M will use '01' for January.</td>
+          </tr>
+          <tr>
+            <td class="font-mono">MMM</td>
+            <td>Dec</td>
+            <td class="text-sm hidden md:table-cell">The shorthand name of the month</td>
+          </tr>
+          <tr>
+            <td class="font-mono">MMMM</td>
+            <td>December</td>
+            <td class="text-sm hidden md:table-cell">Full name of the month</td>
+          </tr>
+          <tr>
+            <td class="font-mono">MMMMM</td>
+            <td>D</td>
+            <td class="text-sm hidden md:table-cell">Narrow name of the month</td>
+          </tr>
+          <tr class="separator">
+            <td colspan="3">Day</td>
+          </tr>
+          <tr>
+            <td class="font-mono">d</td>
+            <td>14</td>
+            <td class="text-sm hidden md:table-cell">The day of the month. A single d will use 1 for January 1st.</td>
+          </tr>
+          <tr>
+            <td class="font-mono">dd</td>
+            <td>14</td>
+            <td class="text-sm hidden md:table-cell">The day of the month. A double d will use 01 for January 1st.</td>
+          </tr>
+          <tr>
+            <td class="font-mono">F</td>
+            <td>2</td>
+            <td class="text-sm hidden md:table-cell">(numeric) The day of week in the month.</td>
+          </tr>
+          <tr>
+            <td class="font-mono">E</td>
+            <td>Tue</td>
+            <td class="text-sm hidden md:table-cell">The abbreviation for the day of the week</td>
+          </tr>
+          <tr>
+            <td class="font-mono">EEEE</td>
+            <td>Tuesday</td>
+            <td class="text-sm hidden md:table-cell">The wide name of the day of the week</td>
+          </tr>
+          <tr>
+            <td class="font-mono">EEEEE</td>
+            <td>T</td>
+            <td class="text-sm hidden md:table-cell">The narrow day of week</td>
+          </tr>
+          <tr>
+            <td class="font-mono">EEEEEE</td>
+            <td>Tu</td>
+            <td class="text-sm hidden md:table-cell">The short day of week</td>
+          </tr>
+          <tr class="separator">
+            <td colspan="3">Hour</td>
+          </tr>
+          <tr>
+            <td class="font-mono">h</td>
+            <td>4</td>
+            <td class="text-sm hidden md:table-cell">The 12-hour hour.</td>
+          </tr>
+          <tr>
+            <td class="font-mono">hh</td>
+            <td>04</td>
+            <td class="text-sm hidden md:table-cell">The 12-hour hour padding with a zero if there is only 1 digit</td>
+          </tr>
+          <tr>
+            <td class="font-mono">H</td>
+            <td>16</td>
+            <td class="text-sm hidden md:table-cell">The 24-hour hour.</td>
+          </tr>
+          <tr>
+            <td class="font-mono">HH</td>
+            <td>16</td>
+            <td class="text-sm hidden md:table-cell">The 24-hour hour padding with a zero if there is only 1 digit.</td>
+          </tr>
+          <tr>
+            <td class="font-mono">a</td>
+            <td>PM</td>
+            <td class="text-sm hidden md:table-cell">AM / PM for 12-hour time formats</td>
+          </tr>
+          <tr class="separator">
+            <td colspan="3">Minute</td>
+          </tr>
+          <tr>
+            <td class="font-mono">m</td>
+            <td>35</td>
+            <td class="text-sm hidden md:table-cell">The minute, with no padding for zeroes.</td>
+          </tr>
+          <tr>
+            <td class="font-mono">mm</td>
+            <td>35</td>
+            <td class="text-sm hidden md:table-cell">The minute with zero padding.</td>
+          </tr>
+          <tr class="separator">
+            <td colspan="3">Second</td>
+          </tr>
+          <tr>
+            <td class="font-mono">s</td>
+            <td>8</td>
+            <td class="text-sm hidden md:table-cell">The seconds, with no padding for zeroes.</td>
+          </tr>
+          <tr>
+            <td class="font-mono">ss</td>
+            <td>08</td>
+            <td class="text-sm hidden md:table-cell">The seconds with zero padding.</td>
+          </tr>
+          <tr>
+            <td class="font-mono">SSS</td>
+            <td>123</td>
+            <td class="text-sm hidden md:table-cell">The milliseconds.</td>
+          </tr>
+          <tr class="separator">
+            <td colspan="3">Time Zone</td>
+          </tr>
+          <tr>
+            <td class="font-mono">zzz</td>
+            <td>CST</td>
+            <td class="text-sm hidden md:table-cell">The 3 letter name of the time zone.  Falls back to GMT-08:00 (hour offset) if the name is not known.</td>
+          </tr>
+          <tr>
+            <td class="font-mono">zzzz</td>
+            <td>Central Standard Time</td>
+            <td class="text-sm hidden md:table-cell">The expanded time zone name, falls back to GMT-08:00 (hour offset) if name is not known.</td>
+          </tr>
+          <tr>
+            <td class="font-mono">ZZZZ</td>
+            <td>CST-06:00</td>
+            <td class="text-sm hidden md:table-cell">Time zone with abbreviation and offset</td>
+          </tr>
+          <tr>
+            <td class="font-mono">Z</td>
+            <td>-0600</td>
+            <td class="text-sm hidden md:table-cell">RFC 822 GMT format. Can also match a literal Z for Zulu (UTC) time.</td>
+          </tr>
+          <tr>
+            <td class="font-mono">ZZZZZ</td>
+            <td>-06:00</td>
+            <td class="text-sm hidden md:table-cell">ISO 8601 time zone format</td>
+          </tr>
+          <tfoot>
+            <tr>
+              <td colspan="3" class="bg-black/20 text-sm text-center">
+                For the full reference of available format options, see 
+                <a href="http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns" class="text-violet-400 hover:text-violet-300 hover:underline" target="_blank">Unicode Technical Reference #35</a>.
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
