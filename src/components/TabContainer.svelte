@@ -1,43 +1,25 @@
 <script>
-  import Examples from "./Examples.svelte";
-  import Reference from "./Reference.svelte";
+    import { onDestroy, onMount } from "svelte";
 
-  export let viewData;
-
-  const tabs = [
-    {
-      route: "#examples",
-      title: "Examples",
-      content: Examples
-    },
-    {
-      route: "#reference",
-      title: "Reference",
-      content: Reference
-    },
-    {
-      route: "#best-practices",
-      title: "Best Practices",
-      content: Examples
-    },
-    {
-      route: "#about",
-      title: "About this site",
-      content: Examples
-    },
-  ];
-
+  export let tabs;
   let selectedTab = tabs[0];
 
-  window.addEventListener("hashchange", () => {
+  function onHashChange() {
     const href = window.location.href;
     let tabRoute = href.substring(href.indexOf("#", null));
     let tab = tabs.find((t) => t.route == tabRoute);
     if (tab === undefined) {
       tab = tabs[0];
     }
-    console.log("Setting tab to ", tab.route);
     selectedTab = tab;
+  }
+
+  onMount(() => {
+    window.addEventListener("hashchange", onHashChange);
+    onHashChange();
+    onDestroy(() => {
+      window.removeEventListener("hashchange", onHashChange);
+    })
   });
 </script>
 
@@ -66,13 +48,7 @@
   </div>
 
   <div class="tab-container my-4">
-    {#each tabs as tab}
-      {#if selectedTab == tab}
-        <section class="{tab.route.substring(1, null)}">
-          <svelte:component this={tab.content} viewData={viewData} />
-        </section>
-      {/if}
-    {/each}
+    <slot {selectedTab} />
   </div>
 </section>
 
