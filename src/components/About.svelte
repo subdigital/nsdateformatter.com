@@ -1,3 +1,7 @@
+<script>
+  import avatar from "../assets/avatar.jpeg"
+  import mastodonLogo from "../assets/mastodon.svg"
+</script>
 <div class="bg-white rounded-lg p-8 lg:max-w-4xl">
   <div class="prose mx-auto">
     <p>
@@ -14,17 +18,17 @@
 
     <h2> About the Author </h2>
 
-    <div class="space-y-4 sm:grid sm:grid-cols-3 sm:items-start sm:gap-6 sm:space-y-0">
+    <div class="space-y-4 sm:grid sm:grid-cols-4 sm:items-start sm:gap-6 sm:space-y-0">
       <div class="aspect-w-3 aspect-h-2 sm:aspect-w-3 sm:aspect-h-4">
-        <img class="object-cover shadow-lg rounded-lg" src="/images/avatar.jpeg" alt="Ben Scheirman">
+        <img class="object-cover shadow-lg rounded-lg" src={avatar} alt="Ben Scheirman">
       </div>
-      <div class="sm:col-span-2">
+      <div class="sm:col-span-3">
         <div class="space-y-4">
           <div class="text-lg leading-6 font-medium space-y-1">
             <h3 class="mb-1">Ben Scheirman</h3>
-            <a href="https://twitter.com/subdigital" target="_blank" class="inline-flex items-center -ml-3">
-              <img alt="twitter" class="w-10 m-0 not-prose" src="/images/twitter.svg">
-              <span>@subdigital</span>
+            <a href="https://mastodon.xyz/@bens" target="_blank" class="inline-flex items-center">
+              <img alt="mastodon" class="w-5 m-0 mr-2 not-prose" src={mastodonLogo}>
+              <span>@bens@mastodon.xyz</span>
             </a>
           </div>
           <div class="text-lg">
@@ -32,10 +36,14 @@
               Ben is an experienced software developer from Houston, TX. He is the founder of <a href="http://nsscreencast.com">NSScreencast</a>,
               where you can find over 500 screencasts on iOS development topics.
             </p>
-            <p class="text-gray-500">You can find Ben on <a href="https://twitter.com/subdigital">Twitter</a> or his <a href="http://benscheirman.com">blog</a>.
+            <p class="text-gray-500">You can find Ben on <a href="https://mastodon.xyz/@bens">Mastodon</a> or his <a href="http://benscheirman.com">blog</a>.
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="text-zinc-600 bg-yellow-100 mt-4 p-2 rounded-md text-center">
+      Special thanks to Dave Delong and Olivier Halligon for their contributions to this site.
     </div>
   </div>
 </div>

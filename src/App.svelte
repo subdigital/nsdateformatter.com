@@ -28,7 +28,6 @@
     <Header />
     <DateForm viewData={viewData} />
     <TabContainer {tabs} let:selectedTab>
-      <h1> selected tab is {selectedTab.route}</h1>
       {#if selectedTab.route == "#examples"}
         <Examples {viewData} />
       {/if}

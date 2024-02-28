@@ -1,5 +1,5 @@
 
-<div class="bg-white bg-opacity-85 rounded-lg p-8 lg:max-w-4xl">
+<div class="bg-white rounded-lg p-8 lg:max-w-4xl">
   <div class="prose mx-auto max-w-2xl">
     <h2> The main fallacy to be aware of: <code>dateFormat</code> is not locale-aware.</h2>
 
