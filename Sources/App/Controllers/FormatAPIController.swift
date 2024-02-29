@@ -121,11 +121,11 @@ class FormatAPIController: RouteCollection {
             }
             return TimeZone(identifier: actualTZID)!
         } else {
-            if #available(macOS 13, *) {
-                return fallback.timeZone ?? TimeZone(secondsFromGMT: 0)!
-            } else {
+            #if os(Linux)
                 return TimeZone(secondsFromGMT: 0)!
-            }
+            #else
+                return fallback.timeZone ?? TimeZone(secondsFromGMT: 0)!
+            #endif
         }
     }
 }

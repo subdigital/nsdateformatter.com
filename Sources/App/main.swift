@@ -1,4 +1,3 @@
-import App
 import Vapor
 
 var env = try Environment.detect()
