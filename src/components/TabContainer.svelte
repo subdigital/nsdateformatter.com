@@ -1,6 +1,9 @@
 <script>
-    import { onDestroy, onMount } from "svelte";
+  import { onMount } from "svelte";
 
+  /**
+    @type {Array.<{title: string, route: string}>} tabs
+  */
   export let tabs;
   let selectedTab = tabs[0];
 
@@ -17,9 +20,9 @@
   onMount(() => {
     window.addEventListener("hashchange", onHashChange);
     onHashChange();
-    onDestroy(() => {
+    return () => {
       window.removeEventListener("hashchange", onHashChange);
-    })
+    }
   });
 </script>
 

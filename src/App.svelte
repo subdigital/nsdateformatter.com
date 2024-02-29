@@ -9,7 +9,7 @@
   import BestPractices from './components/BestPractices.svelte';
   import About from './components/About.svelte';
 
-  import {initialData, fetchData} from './viewData.js';
+  import {initialData, fetchData} from './api.js';
 
   let viewData = initialData;
   fetchData().then((x) => viewData = x);
@@ -26,7 +26,9 @@
 <main>
   <div class="mx-auto max-w-6xl px-0 sm:px-10 py-10 md:py-20">
     <Header />
-    <DateForm viewData={viewData} />
+    <div class="z-50 relative">
+      <DateForm viewData={viewData} />
+    </div>
     <TabContainer {tabs} let:selectedTab>
       {#if selectedTab.route == "#examples"}
         <Examples {viewData} />
