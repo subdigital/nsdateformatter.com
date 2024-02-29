@@ -72,3 +72,9 @@
     </div>
   </div>
 </div>
+
+<style>
+  input {
+    color-scheme: dark;
+  }
+</style>
