@@ -61,6 +61,12 @@ WORKDIR /app
 
 # Copy built executable and staged resources from builder
 COPY --from=build --chown=vapor:vapor /staging /app
+# COPY --from=build --chown=vapor:vapor --chmod=0755 /staging/App /app/App
+# COPY --from=build --chown=vapor:vapor --chmod=0755 /staging/swift-backtrace-static /app/swift-backtrace-static
+# COPY --from=build --chown=vapor:vapor /staging/*.resource /app
+# COPY --from=build --chown=vapor:vapor /staging/Resources /app/Resources
+# COPY --from=build --chown=vapor:vapor /staging/Resources /app/Public
+RUN chmod o+rx /app
 
 # Copy AWS Lambda Extension
 COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.1 /lambda-adapter /opt/extensions/lambda-adapter
@@ -74,4 +80,4 @@ USER vapor:vapor
 EXPOSE 8080
 
 ENTRYPOINT ["./App"]
-CMD ["serve", "--env production", "--hostname", "0.0.0.0", "--port", "8080"]
+CMD ["serve", "--env", "production", "--hostname", "0.0.0.0", "--port", "8080"]

@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: NSDateFormatter serverless lambda
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+
+  apiGateway:
+    Type: AWS::Serverless::HttpApi
+
+  NSDateFormatterVapor:
+    Type: AWS::Serverless::Function
+    Properties:
+      PackageType: Image
+      ImageUri: nsdateformatter
+      Architectures:
+        - arm64
+      
+      Events:
+        HttpGet:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref apiGateway
+            Path: '/viewData'
+            Method: GET
+
+      AutoPublishAlias: live
+
+Outputs:
+  apiGateway:
+    Description: "API Gateway endpoint URL for your application"
+    Value: !Sub "https://${apiGateway}.execute-api.${AWS::Region}.amazonaws.com"
