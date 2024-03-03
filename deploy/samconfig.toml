@@ -5,5 +5,5 @@ resolve_s3 = true
 s3_prefix = "nsdateformatter-api"
 region = "us-east-1"
 capabilities = "CAPABILITY_IAM"
-confirm_changeset = true
+confirm_changeset = false
 image_repositories = ["NSDateFormatterVapor=213075469051.dkr.ecr.us-east-1.amazonaws.com/nsdateformatterapi056a52e3/nsdateformattervapord7b4e79drepo"]
