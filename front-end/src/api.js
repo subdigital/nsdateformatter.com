@@ -11,7 +11,7 @@ export const initialData = {
 
 export const fetchData = async () => {
   try {
-    const response = await fetch(`${config.backendUrl}viewData`);
+    const response = await fetch(`${config.backendUrl}/viewData`);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -31,7 +31,7 @@ export const fetchData = async () => {
  */
 export const formatDate = async (req) => {
   try {
-    const response = await fetch(`${config.backendUrl}api/format`, {
+    const response = await fetch(`${config.backendUrl}/api/format`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

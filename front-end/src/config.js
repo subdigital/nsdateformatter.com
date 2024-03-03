@@ -1,3 +1,4 @@
 export default {
-  backendUrl: import.meta.env.MODE === "production" ? "/" : "http://localhost:8080/"
+  backendUrl: import.meta.env.VITE_API_URL
 };
+

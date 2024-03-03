@@ -12,6 +12,8 @@ dist
 dist-ssr
 *.local
 
+.env
+
 .build
 .swiftpm/xcode/xcuserdata
 
