@@ -22,6 +22,12 @@ Resources:
             ApiId: !Ref apiGateway
             Path: '/viewData'
             Method: GET
+        HttpPost:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref apiGateway
+            Path: '/api/format'
+            Method: POST
 
       AutoPublishAlias: live
 
