@@ -43,7 +43,7 @@
     </div>
 
     <div class="text-zinc-600 bg-yellow-100 mt-4 p-2 rounded-md text-center">
-      Special thanks to Dave Delong and Olivier Halligon for their contributions to this site.
+      Special thanks to Dave DeLong and Olivier Halligon for their contributions to this site.
     </div>
   </div>
 </div>
