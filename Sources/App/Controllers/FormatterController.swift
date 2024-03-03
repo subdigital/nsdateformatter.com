@@ -2,7 +2,6 @@ import Vapor
 import Leaf
 
 struct FormatterController: RouteCollection {
-
     struct DateFormatExample: Codable {
         let format: String
         let value: String
@@ -17,17 +16,11 @@ struct FormatterController: RouteCollection {
         let exampleResult: String
     }
 
-    struct FormatResult: Codable {
-        let status: String
-        let result: String
-    }
-
     func boot(routes: RoutesBuilder) {
-        routes.get("viewData", use: index)
-        routes.post("format", use: format)
+        routes.get("viewData", use: renderViewData)
     }
 
-    func index(_ req: Request) async throws -> ViewData {
+    func renderViewData(_ req: Request) async throws -> ViewData {
         let date = Date()
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: defaultLocaleIdentifier)
@@ -46,34 +39,6 @@ struct FormatterController: RouteCollection {
         )
 
         return viewData
-    }
-
-    func format(_ req: Request) async throws -> String {
-        struct FormatRequest: Codable {
-            let date: String
-            let format: String
-            let timezoneOffset: Float
-            let locale: String
-        }
-
-        let fr = try req.content.decode(FormatRequest.self)
-        req.logger.info("Format request: \(fr)")
-
-
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyy-MM-dd'T'HH:mm"
-        formatter.timeZone = .init(secondsFromGMT: Int(fr.timezoneOffset * 60 * 60))
-
-        guard let dateInput = fr.date.removingPercentEncoding,
-              let sourceDate = formatter.date(from: dateInput) else {
-            throw Abort(.badRequest)
-        }
-
-        formatter.locale = Locale(identifier: fr.locale)
-        formatter.dateFormat = fr.format
-
-        let value = formatter.string(from: sourceDate)
-        return value
     }
 
     private let defaultLocaleIdentifier = "en_US_POSIX"

@@ -2,7 +2,6 @@ import Foundation
 import Vapor
 
 class FormatAPIController: RouteCollection {
-    
     // These identifiers match the CLDR calendar identifiers
     // https://github.com/unicode-org/icu/blob/main/icu4c/source/i18n/ucal.cpp#L694
     private let calendars = [
@@ -223,7 +222,6 @@ struct FormatRequest: Content {
     }
     
     enum Format: Codable {
-        
         enum CodingKeys: CodingKey {
             case date
             case time
