@@ -20,14 +20,8 @@ Resources:
           Type: HttpApi
           Properties:
             ApiId: !Ref apiGateway
-            Path: '/viewData'
-            Method: GET
-        HttpPost:
-          Type: HttpApi
-          Properties:
-            ApiId: !Ref apiGateway
-            Path: '/api/format'
-            Method: POST
+            Path: '$default'
+            Method: ANY
 
       AutoPublishAlias: live
 
