@@ -10,8 +10,13 @@ It was originally written as a means to learn Swift on Linux. It stayed because 
 
 ## The Tech Stack
 
+### Backend
+
 * Swift 5.9
 * Vapor 4
+
+## Frontend
+
 * Svelte
 * Vite
 * Tailwindcss
@@ -55,7 +60,7 @@ Keep in mind that you have to stop & restart for any Swift-level change.
 You'll also need to run the front-end server:
 
 ```
-npm run dev
+cd front-end && npm run dev
 ```
 
 Connect to this front-end server in your browser.
@@ -82,11 +87,11 @@ The Netlify deployment happens on a git push.
 The source code to this application is released under the MIT license.
 See [LICENSE](https://github.com/subdigital/nsdateformatter.com/blob/main/LICENSE).
 
-
 ## Inspired by
 
 This site was inspired by [foragoodstrftime.com](https://www.foragoodstrftime.com), which does the same thing but for Ruby. 🍻
 
 ## Contributions
 
-Pull requests are welcome. Keep in mind that not all suggestions will make it in, as I want this to be an easy to use resource, not an exhaustive list of everything DateFormatter can do.
+Pull requests are welcome. Keep in mind that not all suggestions will make it in, as I want this to be an easy to use resource,
+not an exhaustive list of everything DateFormatter can do.
