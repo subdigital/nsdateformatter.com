@@ -8,7 +8,7 @@
       <strong>nsdateformatter.com</strong> is written with <a href="http://swift.org">Swift</a> for the backend,
       Svelte for the front end. It was originally as a means to learn open-source Swift, Swift Package Manager,
       and deploying to Linux. It uses the <a href="https://vapor.codes" target="_blank">Vapor</a> web application
-      framework and is deployed to <a href="https://heroku.com" target="_blank">Heroku</a>.
+      framework and is deployed to AWS Lambda. The front-end is built using Svelte and Vite as a local dev server.
     </p>
 
     <p>
